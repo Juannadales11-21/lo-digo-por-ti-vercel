@@ -7,7 +7,7 @@ const translations = {
     'form.situationLabel': 'Busca una situación',
     'form.situationPlaceholder': 'Ej: Recordar un pago pendiente',
     'form.descriptionLabel': 'Describe tu situación',
-    'form.descriptionPlaceholder': 'Ej: Presté dinero a un amigo hace dos meses y quiero recordárselo sin sonar agresivo...',
+    'form.descriptionPlaceholder': 'Describe tu situación con detalle para que podamos ayudarte a decirlo mejor.',
     'form.toneLabel': 'Tono',
     'form.toneFormal': 'Formal',
     'form.toneClose': 'Cercano',
@@ -28,7 +28,11 @@ const translations = {
     'examples.useBtn': 'Usar este ejemplo',
     'examples.category.trabajo': 'Trabajo',
     'examples.category.pareja': 'Pareja',
-    'examples.category.familia_amigos': 'Familia/Amigos',
+    'examples.category.familia_amigos': 'Familia / Amigos',
+    'examples.category.dinero': 'Dinero',
+    'examples.category.jefe': 'Jefe',
+    'examples.category.cliente': 'Cliente / Empresa',
+    'examples.category.estudio': 'Estudio',
     'examples.category.formal': 'Formal',
     'examples.category.urgente': 'Urgente',
     'examples.category.personalizado': 'Personalizado',
@@ -77,6 +81,10 @@ const translations = {
     'examples.category.trabajo': 'Work',
     'examples.category.pareja': 'Relationship',
     'examples.category.familia_amigos': 'Family/Friends',
+    'examples.category.dinero': 'Money',
+    'examples.category.jefe': 'Manager',
+    'examples.category.cliente': 'Client/Company',
+    'examples.category.estudio': 'Study',
     'examples.category.formal': 'Formal',
     'examples.category.urgente': 'Urgent',
     'examples.category.personalizado': 'Custom',
@@ -125,6 +133,10 @@ const translations = {
     'examples.category.trabajo': 'Travail',
     'examples.category.pareja': 'Couple',
     'examples.category.familia_amigos': 'Famille/Amis',
+    'examples.category.dinero': 'Argent',
+    'examples.category.jefe': 'Supérieur',
+    'examples.category.cliente': 'Client/Entreprise',
+    'examples.category.estudio': 'Études',
     'examples.category.formal': 'Formel',
     'examples.category.urgente': 'Urgent',
     'examples.category.personalizado': 'Personnalisé',
@@ -173,6 +185,10 @@ const translations = {
     'examples.category.trabajo': 'Arbeit',
     'examples.category.pareja': 'Beziehung',
     'examples.category.familia_amigos': 'Familie/Freunde',
+    'examples.category.dinero': 'Finanzen',
+    'examples.category.jefe': 'Vorgesetzter',
+    'examples.category.cliente': 'Kunde/Firma',
+    'examples.category.estudio': 'Studium',
     'examples.category.formal': 'Formell',
     'examples.category.urgente': 'Dringend',
     'examples.category.personalizado': 'Individuell',
@@ -221,6 +237,10 @@ const translations = {
     'examples.category.trabajo': 'Lavoro',
     'examples.category.pareja': 'Coppia',
     'examples.category.familia_amigos': 'Famiglia/Amici',
+    'examples.category.dinero': 'Denaro',
+    'examples.category.jefe': 'Capo',
+    'examples.category.cliente': 'Cliente/Azienda',
+    'examples.category.estudio': 'Studio',
     'examples.category.formal': 'Formale',
     'examples.category.urgente': 'Urgente',
     'examples.category.personalizado': 'Personalizzato',
@@ -269,6 +289,10 @@ const translations = {
     'examples.category.trabajo': 'Trabalho',
     'examples.category.pareja': 'Relacionamento',
     'examples.category.familia_amigos': 'Família/Amigos',
+    'examples.category.dinero': 'Dinheiro',
+    'examples.category.jefe': 'Chefe',
+    'examples.category.cliente': 'Cliente/Empresa',
+    'examples.category.estudio': 'Estudos',
     'examples.category.formal': 'Formal',
     'examples.category.urgente': 'Urgente',
     'examples.category.personalizado': 'Personalizado',
@@ -290,581 +314,126 @@ const translations = {
   }
 };
 
-const examples = [
-  // Español
+const exampleLanguages = ['es', 'en', 'fr', 'de', 'it', 'pt'];
+
+const baseExamples = [
   {
-    id: 'es-pago-cliente',
-    category: 'trabajo',
-    title: 'Recordar pago pendiente a cliente',
-    quick: 'Recordar pago pendiente',
-    details: 'Quiero recordar a un cliente una factura sin sonar agresivo.',
+    id: 'factura-cliente',
+    category: 'cliente',
+    title: 'Recordar una factura pendiente con tacto',
+    quick: 'Recordatorio de factura',
+    details: 'Recordar a un cliente que la factura vence esta semana sin sonar insistente.',
     tone: 'formal',
-    intensity: 2,
-    language: 'es'
+    intensity: 2
   },
   {
-    id: 'es-aumento',
-    category: 'trabajo',
-    title: 'Pedir un aumento con tacto',
-    quick: 'Pedir aumento',
-    details: 'Destacar mis logros y pedir revisión salarial sin presión.',
+    id: 'feedback-jefe',
+    category: 'jefe',
+    title: 'Pedir feedback tras un proyecto',
+    quick: 'Pedir feedback al jefe',
+    details: 'Solicitar comentarios sobre mi trabajo reciente para seguir mejorando.',
     tone: 'formal',
-    intensity: 2,
-    language: 'es'
+    intensity: 2
   },
   {
-    id: 'es-disculpa',
+    id: 'disculpa-pareja',
     category: 'pareja',
-    title: 'Disculpa después de discusión',
+    title: 'Disculpa por un malentendido',
     quick: 'Disculpa sincera',
-    details: 'Pedir perdón mostrando que me importa sin dramatizar.',
+    details: 'Quiero disculparme por haber contestado seco anoche y proponer hablarlo con calma.',
     tone: 'cercano',
-    intensity: 2,
-    language: 'es'
+    intensity: 2
   },
   {
-    id: 'es-espacio',
+    id: 'dinero-amigo',
+    category: 'dinero',
+    title: 'Hablar de un dinero prestado',
+    quick: 'Recordar un dinero prestado',
+    details: 'Recordar a un amigo que aún me debe dinero sin tensar la relación.',
+    tone: 'cercano',
+    intensity: 2
+  },
+  {
+    id: 'limites-familia',
+    category: 'familia_amigos',
+    title: 'Poner límites con cariño',
+    quick: 'Poner límites a familia',
+    details: 'Explicar que necesito tiempo para mí sin que suene a rechazo.',
+    tone: 'cercano',
+    intensity: 1
+  },
+  {
+    id: 'reclamo-servicio',
+    category: 'cliente',
+    title: 'Reclamar un servicio con calma',
+    quick: 'Reclamo sereno a empresa',
+    details: 'Plantear un reclamo por un cargo erróneo manteniendo un tono cordial.',
+    tone: 'formal',
+    intensity: 3
+  },
+  {
+    id: 'prorroga-estudio',
+    category: 'estudio',
+    title: 'Pedir prórroga a un profesor',
+    quick: 'Pedir prórroga',
+    details: 'Solicitar un par de días extra para entregar un trabajo por un imprevisto.',
+    tone: 'formal',
+    intensity: 2
+  },
+  {
+    id: 'prioridades-jefe',
+    category: 'jefe',
+    title: 'Aclarar prioridades con el jefe',
+    quick: 'Ajustar prioridades',
+    details: 'Pedir a mi jefe que confirme qué tareas son prioritarias para enfocarme mejor.',
+    tone: 'formal',
+    intensity: 2
+  },
+  {
+    id: 'apoyo-pareja',
     category: 'pareja',
-    title: 'Pedir espacio con respeto',
-    quick: 'Pedir un tiempo',
-    details: 'Solicitar un poco de espacio sin herir a mi pareja.',
+    title: 'Ofrecer apoyo en momento difícil',
+    quick: 'Mensaje de apoyo',
+    details: 'Enviar a mi pareja un mensaje de apoyo porque está pasando una semana complicada.',
     tone: 'cercano',
-    intensity: 2,
-    language: 'es'
+    intensity: 1
   },
   {
-    id: 'es-reunion-familia',
+    id: 'plan-amigos',
     category: 'familia_amigos',
-    title: 'Coordinar reunión familiar',
-    quick: 'Organizar reunión',
-    details: 'Proponer comida el domingo y confirmar asistentes.',
+    title: 'Cancelar un plan con respeto',
+    quick: 'Cancelar plan con amigos',
+    details: 'Cancelar un plan y proponer una nueva fecha sin quedar mal.',
     tone: 'cercano',
-    intensity: 2,
-    language: 'es'
+    intensity: 2
   },
   {
-    id: 'es-urgente',
-    category: 'urgente',
-    title: 'Pedir devolución urgente',
-    quick: 'Necesito devolución hoy',
-    details: 'Pedir que me devuelvan algo prestado hoy sin sonar borde.',
-    tone: 'cercano',
-    intensity: 3,
-    language: 'es'
-  },
-  {
-    id: 'es-formal-cita',
-    category: 'formal',
-    title: 'Confirmar reunión formal',
-    quick: 'Confirmar reunión',
-    details: 'Confirmar fecha y hora con un cliente de forma profesional.',
-    tone: 'formal',
-    intensity: 2,
-    language: 'es'
-  },
-  {
-    id: 'es-feedback',
+    id: 'cobro-freelance',
     category: 'trabajo',
-    title: 'Dar feedback delicado',
-    quick: 'Feedback cuidadoso',
-    details: 'Compartir mejoras con un compañero manteniendo buena relación.',
-    tone: 'cercano',
-    intensity: 2,
-    language: 'es'
-  },
-  // English
-  {
-    id: 'en-invoice-reminder',
-    category: 'trabajo',
-    title: 'Invoice reminder to a client',
-    quick: 'Invoice reminder',
-    details: 'Remind about an unpaid invoice without sounding harsh.',
+    title: 'Cobro pendiente de un proyecto',
+    quick: 'Cobro pendiente',
+    details: 'Pedir el pago de un proyecto freelance con profesionalismo y empatía.',
     tone: 'formal',
-    intensity: 2,
-    language: 'en'
+    intensity: 3
   },
   {
-    id: 'en-raise',
-    category: 'trabajo',
-    title: 'Ask for a raise politely',
-    quick: 'Request a raise',
-    details: 'Highlight achievements and ask for a salary review.',
+    id: 'seguimiento-cliente',
+    category: 'cliente',
+    title: 'Seguimiento amable de propuesta',
+    quick: 'Seguimiento de propuesta',
+    details: 'Dar seguimiento a una propuesta enviada sin presionar.',
     tone: 'formal',
-    intensity: 2,
-    language: 'en'
-  },
-  {
-    id: 'en-apology',
-    category: 'pareja',
-    title: 'Apologize after disagreement',
-    quick: 'Sincere apology',
-    details: 'Say sorry, show I care, and invite a calm chat.',
-    tone: 'cercano',
-    intensity: 2,
-    language: 'en'
-  },
-  {
-    id: 'en-family-plan',
-    category: 'familia_amigos',
-    title: 'Plan a family visit',
-    quick: 'Family catch-up',
-    details: 'Invite family for a weekend lunch and confirm who can join.',
-    tone: 'cercano',
-    intensity: 2,
-    language: 'en'
-  },
-  {
-    id: 'en-urgent-shift',
-    category: 'urgente',
-    title: 'Ask to swap a shift',
-    quick: 'Shift swap request',
-    details: 'Request a shift swap today and offer a quick alternative.',
-    tone: 'cercano',
-    intensity: 3,
-    language: 'en'
-  },
-  {
-    id: 'en-formal-meeting',
-    category: 'formal',
-    title: 'Confirm a formal meeting',
-    quick: 'Meeting confirmation',
-    details: 'Confirm date and time with a client in a polished way.',
-    tone: 'formal',
-    intensity: 2,
-    language: 'en'
-  },
-  {
-    id: 'en-feedback',
-    category: 'trabajo',
-    title: 'Give gentle feedback',
-    quick: 'Supportive feedback',
-    details: 'Share improvement points with empathy and clarity.',
-    tone: 'cercano',
-    intensity: 2,
-    language: 'en'
-  },
-  {
-    id: 'en-support-friend',
-    category: 'familia_amigos',
-    title: 'Support a friend going through stress',
-    quick: 'Supportive note',
-    details: 'Send a caring note offering help to a stressed friend.',
-    tone: 'cercano',
-    intensity: 1,
-    language: 'en'
-  },
-  // French
-  {
-    id: 'fr-facture',
-    category: 'trabajo',
-    title: 'Relancer une facture en attente',
-    quick: 'Relance facture',
-    details: 'Rappeler un paiement dû sans brusquer.',
-    tone: 'formal',
-    intensity: 2,
-    language: 'fr'
-  },
-  {
-    id: 'fr-augmentation',
-    category: 'trabajo',
-    title: 'Demander une augmentation',
-    quick: 'Demande d’augmentation',
-    details: 'Mettre en avant mes résultats et proposer une révision salariale.',
-    tone: 'formal',
-    intensity: 2,
-    language: 'fr'
-  },
-  {
-    id: 'fr-excuses',
-    category: 'pareja',
-    title: 'Présenter des excuses',
-    quick: 'Excuses sincères',
-    details: 'Dire pardon après une dispute et proposer d’en parler calmement.',
-    tone: 'cercano',
-    intensity: 2,
-    language: 'fr'
-  },
-  {
-    id: 'fr-famille',
-    category: 'familia_amigos',
-    title: 'Organiser un dîner de famille',
-    quick: 'Dîner de famille',
-    details: 'Proposer un repas dimanche et vérifier les disponibilités.',
-    tone: 'cercano',
-    intensity: 2,
-    language: 'fr'
-  },
-  {
-    id: 'fr-urgent',
-    category: 'urgente',
-    title: 'Demander un document urgent',
-    quick: 'Document urgent',
-    details: 'Demander un document pour aujourd’hui avec tact.',
-    tone: 'formal',
-    intensity: 3,
-    language: 'fr'
-  },
-  {
-    id: 'fr-formel',
-    category: 'formal',
-    title: 'Confirmer un rendez-vous',
-    quick: 'Confirmation rendez-vous',
-    details: 'Confirmer une heure et un lieu de manière professionnelle.',
-    tone: 'formal',
-    intensity: 2,
-    language: 'fr'
-  },
-  {
-    id: 'fr-soutien',
-    category: 'familia_amigos',
-    title: 'Message de soutien',
-    quick: 'Soutien amical',
-    details: 'Envoyer un mot chaleureux à un ami stressé.',
-    tone: 'cercano',
-    intensity: 1,
-    language: 'fr'
-  },
-  {
-    id: 'fr-feedback',
-    category: 'trabajo',
-    title: 'Donner un feedback constructif',
-    quick: 'Feedback bienveillant',
-    details: 'Partager des pistes d’amélioration avec empathie.',
-    tone: 'cercano',
-    intensity: 2,
-    language: 'fr'
-  },
-  // German
-  {
-    id: 'de-rechnung',
-    category: 'trabajo',
-    title: 'An offene Rechnung erinnern',
-    quick: 'Rechnung erinnern',
-    details: 'Zahlungserinnerung freundlich formulieren.',
-    tone: 'formal',
-    intensity: 2,
-    language: 'de'
-  },
-  {
-    id: 'de-gehalt',
-    category: 'trabajo',
-    title: 'Gehaltserhöhung ansprechen',
-    quick: 'Gehalt anfragen',
-    details: 'Erfolge nennen und um Anpassung bitten.',
-    tone: 'formal',
-    intensity: 2,
-    language: 'de'
-  },
-  {
-    id: 'de-entschuldigung',
-    category: 'pareja',
-    title: 'Entschuldigung nach Streit',
-    quick: 'Versöhnliche Nachricht',
-    details: 'Aufrichtig entschuldigen und Gespräch vorschlagen.',
-    tone: 'cercano',
-    intensity: 2,
-    language: 'de'
-  },
-  {
-    id: 'de-familie',
-    category: 'familia_amigos',
-    title: 'Familientreffen planen',
-    quick: 'Familientreffen',
-    details: 'Ein Treffen am Wochenende koordinieren.',
-    tone: 'cercano',
-    intensity: 2,
-    language: 'de'
-  },
-  {
-    id: 'de-dringend',
-    category: 'urgente',
-    title: 'Dringend um Antwort bitten',
-    quick: 'Schnelle Antwort',
-    details: 'Noch heute eine Rückmeldung erbitten.',
-    tone: 'formal',
-    intensity: 3,
-    language: 'de'
-  },
-  {
-    id: 'de-formal',
-    category: 'formal',
-    title: 'Termin professionell bestätigen',
-    quick: 'Termin bestätigen',
-    details: 'Datum und Uhrzeit höflich bestätigen.',
-    tone: 'formal',
-    intensity: 2,
-    language: 'de'
-  },
-  {
-    id: 'de-feedback',
-    category: 'trabajo',
-    title: 'Konstruktives Feedback geben',
-    quick: 'Feedback freundlich',
-    details: 'Verbesserungen wertschätzend formulieren.',
-    tone: 'cercano',
-    intensity: 2,
-    language: 'de'
-  },
-  {
-    id: 'de-unterstuetzung',
-    category: 'familia_amigos',
-    title: 'Unterstützung anbieten',
-    quick: 'Unterstützender Gruß',
-    details: 'Einem gestressten Freund Hilfe anbieten.',
-    tone: 'cercano',
-    intensity: 1,
-    language: 'de'
-  },
-  // Italian
-  {
-    id: 'it-fattura',
-    category: 'trabajo',
-    title: 'Ricordare una fattura',
-    quick: 'Promemoria fattura',
-    details: 'Ricordare un pagamento senza sembrare duro.',
-    tone: 'formal',
-    intensity: 2,
-    language: 'it'
-  },
-  {
-    id: 'it-aumento',
-    category: 'trabajo',
-    title: 'Chiedere un aumento',
-    quick: 'Richiesta aumento',
-    details: 'Mettere in evidenza i risultati e chiedere revisione.',
-    tone: 'formal',
-    intensity: 2,
-    language: 'it'
-  },
-  {
-    id: 'it-scuse',
-    category: 'pareja',
-    title: 'Scusarsi dopo una lite',
-    quick: 'Scuse sincere',
-    details: 'Chiedere scusa e proporre di parlarne con calma.',
-    tone: 'cercano',
-    intensity: 2,
-    language: 'it'
-  },
-  {
-    id: 'it-famiglia',
-    category: 'familia_amigos',
-    title: 'Organizzare pranzo in famiglia',
-    quick: 'Pranzo di famiglia',
-    details: 'Proporre pranzo domenicale e chiedere conferma.',
-    tone: 'cercano',
-    intensity: 2,
-    language: 'it'
-  },
-  {
-    id: 'it-urgente',
-    category: 'urgente',
-    title: 'Chiedere risposta urgente',
-    quick: 'Risposta oggi',
-    details: 'Richiedere conferma oggi con cortesia.',
-    tone: 'formal',
-    intensity: 3,
-    language: 'it'
-  },
-  {
-    id: 'it-formale',
-    category: 'formal',
-    title: 'Confermare un appuntamento',
-    quick: 'Conferma appuntamento',
-    details: 'Confermare data e ora in modo professionale.',
-    tone: 'formal',
-    intensity: 2,
-    language: 'it'
-  },
-  {
-    id: 'it-feedback',
-    category: 'trabajo',
-    title: 'Dare feedback con tatto',
-    quick: 'Feedback gentile',
-    details: 'Suggerire miglioramenti con tono positivo.',
-    tone: 'cercano',
-    intensity: 2,
-    language: 'it'
-  },
-  {
-    id: 'it-sostegno',
-    category: 'familia_amigos',
-    title: 'Offrire sostegno a un amico',
-    quick: 'Messaggio di sostegno',
-    details: 'Inviare parole di incoraggiamento a chi è sotto stress.',
-    tone: 'cercano',
-    intensity: 1,
-    language: 'it'
-  },
-  // Portuguese
-  {
-    id: 'pt-fatura',
-    category: 'trabajo',
-    title: 'Lembrar uma fatura pendente',
-    quick: 'Lembrete de pagamento',
-    details: 'Cobrar educadamente uma fatura atrasada.',
-    tone: 'formal',
-    intensity: 2,
-    language: 'pt'
-  },
-  {
-    id: 'pt-aumento',
-    category: 'trabajo',
-    title: 'Pedir aumento com tato',
-    quick: 'Pedir aumento',
-    details: 'Apontar resultados e solicitar revisão salarial.',
-    tone: 'formal',
-    intensity: 2,
-    language: 'pt'
-  },
-  {
-    id: 'pt-desculpa',
-    category: 'pareja',
-    title: 'Pedir desculpas após discussão',
-    quick: 'Desculpa sincera',
-    details: 'Pedir perdão e propor uma conversa calma.',
-    tone: 'cercano',
-    intensity: 2,
-    language: 'pt'
-  },
-  {
-    id: 'pt-familia',
-    category: 'familia_amigos',
-    title: 'Marcar almoço em família',
-    quick: 'Almoço de família',
-    details: 'Convidar para almoço no fim de semana e confirmar presenças.',
-    tone: 'cercano',
-    intensity: 2,
-    language: 'pt'
-  },
-  {
-    id: 'pt-urgente',
-    category: 'urgente',
-    title: 'Confirmar algo para hoje',
-    quick: 'Preciso hoje',
-    details: 'Pedir confirmação ou devolução ainda hoje com cordialidade.',
-    tone: 'formal',
-    intensity: 3,
-    language: 'pt'
-  },
-  {
-    id: 'pt-formal',
-    category: 'formal',
-    title: 'Confirmar reunião formal',
-    quick: 'Confirmar reunião',
-    details: 'Confirmar data e hora com linguagem profissional.',
-    tone: 'formal',
-    intensity: 2,
-    language: 'pt'
-  },
-  {
-    id: 'pt-feedback',
-    category: 'trabajo',
-    title: 'Dar feedback gentil',
-    quick: 'Feedback construtivo',
-    details: 'Sugerir melhorias mantendo o clima positivo.',
-    tone: 'cercano',
-    intensity: 2,
-    language: 'pt'
-  },
-  {
-    id: 'pt-apoio',
-    category: 'familia_amigos',
-    title: 'Enviar apoio a um amigo',
-    quick: 'Mensagem de apoio',
-    details: 'Mostrar que estou disponível para ajudar alguém sobrecarregado.',
-    tone: 'cercano',
-    intensity: 1,
-    language: 'pt'
+    intensity: 2
   }
 ];
 
-const fallbackMessages = {
-  es: [
-    { category: 'trabajo', text: 'Hola, te recuerdo la entrega de hoy. Si algo se complica, avísame y lo reprogramamos juntos.' },
-    { category: 'trabajo', text: 'Buenos días, solo confirmar la factura pendiente. Si necesitas un nuevo plazo, dime y lo coordinamos.' },
-    { category: 'pareja', text: 'Siento el malentendido de antes. Me importas y quiero que hablemos con calma cuando puedas.' },
-    { category: 'pareja', text: 'Me gustaría que tengamos un momento este fin de semana solo para nosotros. Quiero escucharte y reconectar.' },
-    { category: 'familia_amigos', text: '¿Te parece si nos vemos el viernes? Me encantaría saber cómo estás y pasar un rato juntos.' },
-    { category: 'familia_amigos', text: 'Gracias por tu ayuda la semana pasada. Significó mucho para mí y quería que lo supieras.' },
-    { category: 'formal', text: 'Estimado/a, le confirmo la reunión agendada. Si necesita reprogramar, puedo proponerle nuevos horarios.' },
-    { category: 'formal', text: 'Adjunto la información solicitada. Si hay dudas, estaré atento/a para aclararlas de inmediato.' },
-    { category: 'urgente', text: '¿Podrías confirmar hoy el envío del material? Si no es posible, avísame para buscar otra opción.' },
-    { category: 'urgente', text: 'Por favor, dime si podrás llegar a la hora prevista. Si surge algo, coordinamos otro plan.' },
-    { category: 'personalizado', text: 'Hola, solo quería asegurarte que sigo pendiente y listo para ayudarte en lo que necesites.' },
-    { category: 'trabajo', text: 'Gracias por tu esfuerzo reciente. Aviso que necesitamos el reporte final hoy para cerrar el proyecto.' }
-  ],
-  en: [
-    { category: 'trabajo', text: 'Hi, quick reminder about today’s delivery. If anything changes, let me know and we’ll adjust together.' },
-    { category: 'trabajo', text: 'Good morning, I’m checking on the pending invoice. If you need a new date, tell me and we’ll align.' },
-    { category: 'pareja', text: 'I’m sorry about earlier. You matter to me—can we talk calmly when you’re ready?' },
-    { category: 'pareja', text: 'I’d love for us to have time together this weekend. I want to hear you and reconnect.' },
-    { category: 'familia_amigos', text: 'How about meeting on Friday? I’d like to see you and catch up properly.' },
-    { category: 'familia_amigos', text: 'Thank you for your help last week. It meant a lot to me and I wanted to say it clearly.' },
-    { category: 'formal', text: 'Dear all, confirming our scheduled meeting. If you need to reschedule, I can propose alternative slots.' },
-    { category: 'formal', text: 'Please find the requested info attached. Let me know if you have any questions.' },
-    { category: 'urgente', text: 'Could you confirm today if you can send the files? If not, I’ll arrange another solution.' },
-    { category: 'urgente', text: 'Please let me know if you can arrive on time. If something comes up, we’ll adjust the plan.' },
-    { category: 'personalizado', text: 'I’m here and ready to help with whatever you need—just tell me how I can support you.' },
-    { category: 'trabajo', text: 'Thanks for your effort lately. We need the final report today to close the project.' }
-  ],
-  fr: [
-    { category: 'trabajo', text: 'Bonjour, un rappel pour la livraison d’aujourd’hui. Si besoin de décaler, dis-le-moi et on réorganise.' },
-    { category: 'trabajo', text: 'Je reviens vers toi au sujet de la facture en attente. Si un nouveau délai est nécessaire, on l’accorde ensemble.' },
-    { category: 'pareja', text: 'Je suis désolé pour plus tôt. Tu comptes pour moi—parlons-en calmement quand tu seras prêt(e).' },
-    { category: 'pareja', text: 'J’aimerais qu’on prenne du temps ensemble ce week-end. Ça me ferait plaisir de te retrouver.' },
-    { category: 'familia_amigos', text: 'On se voit vendredi ? J’aimerais avoir de tes nouvelles et passer un bon moment.' },
-    { category: 'familia_amigos', text: 'Merci pour ton aide la semaine dernière. Ça m’a vraiment touché et je voulais te le dire.' },
-    { category: 'formal', text: 'Je confirme notre réunion prévue. Si besoin de reporter, je propose d’autres créneaux.' },
-    { category: 'formal', text: 'Veuillez trouver ci-joint les informations demandées. Je reste disponible pour toute question.' },
-    { category: 'urgente', text: 'Peux-tu confirmer aujourd’hui l’envoi des documents ? Sinon, je prévois une autre option.' },
-    { category: 'urgente', text: 'Dis-moi si tu peux arriver à l’heure prévue. En cas d’imprévu, on réajuste ensemble.' },
-    { category: 'personalizado', text: 'Je suis là pour t’aider dans ce dont tu as besoin—n’hésite pas à me dire comment.' },
-    { category: 'trabajo', text: 'Merci pour tes efforts récents. Nous avons besoin du rapport final aujourd’hui pour clôturer le projet.' }
-  ],
-  de: [
-    { category: 'trabajo', text: 'Hallo, kurze Erinnerung an die Lieferung heute. Wenn etwas dazwischenkommt, sag Bescheid und wir passen es an.' },
-    { category: 'trabajo', text: 'Guten Morgen, ich frage wegen der offenen Rechnung nach. Brauchst du einen neuen Termin? Wir finden ihn gern.' },
-    { category: 'pareja', text: 'Es tut mir leid wegen vorhin. Du bist mir wichtig—lass uns in Ruhe reden, wenn du bereit bist.' },
-    { category: 'pareja', text: 'Ich würde gerne am Wochenende Zeit nur für uns einplanen. Ich möchte dich hören und uns wieder annähern.' },
-    { category: 'familia_amigos', text: 'Hast du Freitag Zeit, uns zu treffen? Ich würde mich freuen, dich zu sehen.' },
-    { category: 'familia_amigos', text: 'Danke für deine Hilfe letzte Woche. Sie hat mir viel bedeutet, und ich wollte es sagen.' },
-    { category: 'formal', text: 'Ich bestätige unseren Termin. Falls eine Verschiebung nötig ist, schlage ich gern Alternativen vor.' },
-    { category: 'formal', text: 'Anbei die angeforderten Informationen. Bei Fragen stehe ich sofort zur Verfügung.' },
-    { category: 'urgente', text: 'Kannst du heute bestätigen, ob du die Unterlagen senden kannst? Sonst plane ich anders.' },
-    { category: 'urgente', text: 'Bitte sag mir, ob du pünktlich sein kannst. Falls etwas passiert, passen wir den Plan an.' },
-    { category: 'personalizado', text: 'Ich bin da und helfe gern, egal wobei. Sag mir einfach, was du brauchst.' },
-    { category: 'trabajo', text: 'Danke für deinen Einsatz. Wir brauchen den Abschlussbericht heute, um das Projekt zu schließen.' }
-  ],
-  it: [
-    { category: 'trabajo', text: 'Ciao, un promemoria per la consegna di oggi. Se cambia qualcosa, dimmelo e riorganizziamo.' },
-    { category: 'trabajo', text: 'Buongiorno, ti scrivo per la fattura in sospeso. Se serve una nuova data, la fissiamo insieme.' },
-    { category: 'pareja', text: 'Mi dispiace per prima. Ci tengo a te—parliamone con calma quando sei pronto/a.' },
-    { category: 'pareja', text: 'Mi piacerebbe dedicarci del tempo questo weekend, solo noi due. Voglio ascoltarti e ritrovarci.' },
-    { category: 'familia_amigos', text: 'Che ne dici di vederci venerdì? Mi farebbe piacere passare un po’ di tempo insieme.' },
-    { category: 'familia_amigos', text: 'Grazie per l’aiuto della settimana scorsa. Per me è stato importante dirtelo.' },
-    { category: 'formal', text: 'Confermo l’incontro previsto. Se serve riprogrammare, propongo nuovi orari.' },
-    { category: 'formal', text: 'In allegato le informazioni richieste. Per qualsiasi domanda, resto a disposizione.' },
-    { category: 'urgente', text: 'Puoi confermare oggi l’invio dei file? In caso contrario cerco un’altra soluzione.' },
-    { category: 'urgente', text: 'Fammi sapere se riesci ad arrivare puntuale. Se c’è un imprevisto, adattiamo il piano.' },
-    { category: 'personalizado', text: 'Sono qui per aiutarti in ciò che ti serve: dimmi solo come posso supportarti.' },
-    { category: 'trabajo', text: 'Grazie per il tuo impegno. Abbiamo bisogno del report finale oggi per chiudere il progetto.' }
-  ],
-  pt: [
-    { category: 'trabajo', text: 'Oi, só lembrando da entrega de hoje. Se algo mudar, me avise e reorganizamos juntos.' },
-    { category: 'trabajo', text: 'Bom dia, passando para confirmar a fatura pendente. Se precisar de novo prazo, combinamos.' },
-    { category: 'pareja', text: 'Desculpa pelo que aconteceu. Você é importante para mim—vamos conversar com calma quando puder?' },
-    { category: 'pareja', text: 'Queria que tivéssemos um tempo só nosso neste fim de semana. Quero ouvir você e nos reaproximar.' },
-    { category: 'familia_amigos', text: 'Que tal nos encontrarmos sexta? Quero saber de você e colocar a conversa em dia.' },
-    { category: 'familia_amigos', text: 'Obrigado pela ajuda na semana passada. Significou muito e queria que soubesse.' },
-    { category: 'formal', text: 'Confirmo a reunião marcada. Se precisar reagendar, posso sugerir novos horários.' },
-    { category: 'formal', text: 'Segue em anexo as informações solicitadas. Qualquer dúvida, estou à disposição.' },
-    { category: 'urgente', text: 'Pode confirmar hoje se conseguirá enviar os arquivos? Se não, busco outra alternativa.' },
-    { category: 'urgente', text: 'Por favor, avise se conseguirá chegar no horário. Se algo surgir, ajustamos o plano.' },
-    { category: 'personalizado', text: 'Estou aqui para ajudar no que precisar—é só dizer como posso apoiar.' },
-    { category: 'trabajo', text: 'Obrigado pelo esforço recente. Precisamos do relatório final hoje para encerrar o projeto.' }
-  ]
-};
+const examples = exampleLanguages.flatMap((lang) =>
+  baseExamples.map((ex) => ({
+    ...ex,
+    id: `${lang}-${ex.id}`,
+    language: lang
+  }))
+);
 
 const MAX_MESSAGES = 3;
 const FAVORITES_KEY = 'ldpt_favorites';
@@ -1120,6 +689,50 @@ const toggleFavorite = (item, btn) => {
     btn.textContent = isFav ? dict['buttons.favorited'] : dict['buttons.saveFavorite'];
   }
 };
+
+const fallbackBase = [
+  {
+    category: 'trabajo',
+    text: 'Hola, te escribo para alinear prioridades y evitar confusiones. ¿Podemos revisar juntos los pendientes y acordar el orden?'
+  },
+  {
+    category: 'pareja',
+    text: 'Siento lo de ayer. Me gustaría hablarlo con calma y escuchar cómo te sentiste. ¿Te parece si lo vemos esta noche?'
+  },
+  {
+    category: 'familia_amigos',
+    text: 'Quería comentarte algo sin presiones: necesito un poco de espacio esta semana para organizarme, pero sigo aquí para ti.'
+  },
+  {
+    category: 'dinero',
+    text: 'Hola, te recuerdo el dinero que te presté hace unas semanas. ¿Podrías decirme cuándo te viene bien devolverlo? Lo agradecería mucho.'
+  },
+  {
+    category: 'jefe',
+    text: 'Hola, ¿podemos revisar las prioridades de esta semana? Quiero asegurarme de enfocarme en lo que más impacto tiene y cumplir los plazos.'
+  },
+  {
+    category: 'cliente',
+    text: 'Hola, lamento el inconveniente con tu solicitud. Ya lo estamos revisando y te compartiré la solución antes de que termine el día. Gracias por la paciencia.'
+  },
+  {
+    category: 'estudio',
+    text: 'Profesor/a, tuve un imprevisto y necesitaría entregar el trabajo el [nueva fecha]. Quiero presentarlo bien hecho, ¿sería posible?'
+  },
+  {
+    category: 'trabajo',
+    text: 'Gracias por tu ayuda en el proyecto. ¿Podemos agendar 15 minutos mañana para cerrar los pendientes y asignar los siguientes pasos?'
+  },
+  {
+    category: 'pareja',
+    text: 'Sé que estás pasando por mucho. No quiero agobiarte; solo recordarte que estoy aquí para apoyarte en lo que necesites.'
+  }
+];
+
+const fallbackMessages = exampleLanguages.reduce((acc, lang) => {
+  acc[lang] = fallbackBase;
+  return acc;
+}, {});
 
 const buildFallbackMessages = (lang) => {
   const list = fallbackMessages[lang] || fallbackMessages.es;
