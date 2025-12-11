@@ -12,13 +12,21 @@ const translations = {
     'form.toneFormal': 'Formal',
     'form.toneClose': 'Cercano',
     'form.toneFun': 'Divertido',
-    'form.intensityLabel': 'Intensidad',
+    'form.intensityLabel': 'Firmeza',
     'form.intensity1': '1 Suave',
-    'form.intensity2': '2 Neutro',
+    'form.intensity2': '2 Normal',
     'form.intensity3': '3 Directo',
     'form.intensity4': '4 Muy directo',
     'form.generateBtn': 'Generar mensaje',
     'form.humanized': 'Texto optimizado para sonar natural y humano.',
+    'form.firmnessLabel': 'Firmeza',
+    'form.firmnessSoft': 'Suave',
+    'form.firmnessNormal': 'Normal',
+    'form.firmnessDirect': 'Directo',
+    'form.humanizeLabel': 'Humanizar',
+    'form.humanizeHelp': 'Activa un estilo mas natural, calido y cercano.',
+    'form.wordCount.singular': 'palabra',
+    'form.wordCount.plural': 'palabras',
     'results.eyebrow': 'Resultados',
     'results.title': 'Opciones listas para copiar',
     'results.empty': 'Escribe la situación y pulsa "Generar mensaje".',
@@ -45,10 +53,10 @@ const translations = {
     'buttons.saveFavorite': 'Guardar favorito',
     'buttons.favorited': 'Favorito',
     'buttons.useExample': 'Usar este ejemplo',
-    'status.loading': 'Generando mensajes...',
+    'status.loading': 'Escribiendo mensajes...',
     'status.ready': 'Opciones listas',
     'intensity.value.1': 'Suave',
-    'intensity.value.2': 'Neutro',
+    'intensity.value.2': 'Normal',
     'intensity.value.3': 'Directo',
     'intensity.value.4': 'Muy directo'
   },
@@ -64,13 +72,21 @@ const translations = {
     'form.toneFormal': 'Formal',
     'form.toneClose': 'Friendly',
     'form.toneFun': 'Playful',
-    'form.intensityLabel': 'Intensity',
+    'form.intensityLabel': 'Firmness',
     'form.intensity1': '1 Soft',
-    'form.intensity2': '2 Neutral',
+    'form.intensity2': '2 Normal',
     'form.intensity3': '3 Direct',
     'form.intensity4': '4 Very direct',
     'form.generateBtn': 'Generate message',
     'form.humanized': 'Text optimized to sound natural and human-like.',
+    'form.firmnessLabel': 'Firmness',
+    'form.firmnessSoft': 'Soft',
+    'form.firmnessNormal': 'Normal',
+    'form.firmnessDirect': 'Direct',
+    'form.humanizeLabel': 'Humanize',
+    'form.humanizeHelp': 'Make the tone warmer and more natural when enabled.',
+    'form.wordCount.singular': 'word',
+    'form.wordCount.plural': 'words',
     'results.eyebrow': 'Results',
     'results.title': 'Ready-to-copy options',
     'results.empty': 'Describe the situation and tap "Generate message".',
@@ -97,10 +113,10 @@ const translations = {
     'buttons.saveFavorite': 'Save favorite',
     'buttons.favorited': 'Favorite',
     'buttons.useExample': 'Use this example',
-    'status.loading': 'Generating messages...',
+    'status.loading': 'Writing messages...',
     'status.ready': 'Options ready',
     'intensity.value.1': 'Soft',
-    'intensity.value.2': 'Neutral',
+    'intensity.value.2': 'Normal',
     'intensity.value.3': 'Direct',
     'intensity.value.4': 'Very direct'
   },
@@ -116,13 +132,21 @@ const translations = {
     'form.toneFormal': 'Formel',
     'form.toneClose': 'Proche',
     'form.toneFun': 'Ludique',
-    'form.intensityLabel': 'Intensité',
+    'form.intensityLabel': 'Fermeté',
     'form.intensity1': '1 Doux',
-    'form.intensity2': '2 Neutre',
+    'form.intensity2': '2 Équilibré',
     'form.intensity3': '3 Direct',
     'form.intensity4': '4 Très direct',
     'form.generateBtn': 'Générer',
     'form.humanized': 'Texte optimisé pour paraître naturel et humain.',
+    'form.firmnessLabel': 'Fermeté',
+    'form.firmnessSoft': 'Doux',
+    'form.firmnessNormal': 'Équilibré',
+    'form.firmnessDirect': 'Direct',
+    'form.humanizeLabel': 'Humaniser',
+    'form.humanizeHelp': 'Active un style plus naturel, chaleureux et humain.',
+    'form.wordCount.singular': 'mot',
+    'form.wordCount.plural': 'mots',
     'results.eyebrow': 'Résultats',
     'results.title': 'Options prêtes à copier',
     'results.empty': 'Décris la situation puis clique sur "Générer".',
@@ -149,10 +173,10 @@ const translations = {
     'buttons.saveFavorite': 'Enregistrer',
     'buttons.favorited': 'Favori',
     'buttons.useExample': 'Utiliser cet exemple',
-    'status.loading': 'Génération en cours...',
+    'status.loading': 'Rédaction des messages...',
     'status.ready': 'Options prêtes',
     'intensity.value.1': 'Doux',
-    'intensity.value.2': 'Neutre',
+    'intensity.value.2': 'Équilibré',
     'intensity.value.3': 'Direct',
     'intensity.value.4': 'Très direct'
   },
@@ -168,13 +192,21 @@ const translations = {
     'form.toneFormal': 'Formell',
     'form.toneClose': 'Nahbar',
     'form.toneFun': 'Locker',
-    'form.intensityLabel': 'Intensität',
+    'form.intensityLabel': 'Bestimmtheit',
     'form.intensity1': '1 Sanft',
-    'form.intensity2': '2 Neutral',
+    'form.intensity2': '2 Normal',
     'form.intensity3': '3 Direkt',
     'form.intensity4': '4 Sehr direkt',
     'form.generateBtn': 'Nachricht erstellen',
     'form.humanized': 'Text optimiert, um natürlich und menschlich zu klingen.',
+    'form.firmnessLabel': 'Bestimmtheit',
+    'form.firmnessSoft': 'Sanft',
+    'form.firmnessNormal': 'Ausgewogen',
+    'form.firmnessDirect': 'Direkt',
+    'form.humanizeLabel': 'Natürlich',
+    'form.humanizeHelp': 'Aktiviere einen wärmeren, natürlicheren Stil.',
+    'form.wordCount.singular': 'Wort',
+    'form.wordCount.plural': 'Wörter',
     'results.eyebrow': 'Ergebnisse',
     'results.title': 'Sofort kopierbare Optionen',
     'results.empty': 'Beschreibe die Situation und klicke „Nachricht erstellen“.',
@@ -201,10 +233,10 @@ const translations = {
     'buttons.saveFavorite': 'Favorit speichern',
     'buttons.favorited': 'Favorit',
     'buttons.useExample': 'Beispiel nutzen',
-    'status.loading': 'Nachrichten werden erstellt...',
+    'status.loading': 'Nachrichten werden geschrieben...',
     'status.ready': 'Optionen bereit',
     'intensity.value.1': 'Sanft',
-    'intensity.value.2': 'Neutral',
+    'intensity.value.2': 'Normal',
     'intensity.value.3': 'Direkt',
     'intensity.value.4': 'Sehr direkt'
   },
@@ -220,13 +252,21 @@ const translations = {
     'form.toneFormal': 'Formale',
     'form.toneClose': 'Vicino',
     'form.toneFun': 'Divertente',
-    'form.intensityLabel': 'Intensità',
+    'form.intensityLabel': 'Firmezza',
     'form.intensity1': '1 Leggero',
-    'form.intensity2': '2 Neutro',
+    'form.intensity2': '2 Normale',
     'form.intensity3': '3 Diretto',
     'form.intensity4': '4 Molto diretto',
     'form.generateBtn': 'Genera messaggio',
     'form.humanized': 'Testo ottimizzato per sembrare naturale e umano.',
+    'form.firmnessLabel': 'Firmezza',
+    'form.firmnessSoft': 'Leggero',
+    'form.firmnessNormal': 'Normale',
+    'form.firmnessDirect': 'Diretto',
+    'form.humanizeLabel': 'Umanizzare',
+    'form.humanizeHelp': 'Attiva uno stile più naturale, caldo e umano.',
+    'form.wordCount.singular': 'parola',
+    'form.wordCount.plural': 'parole',
     'results.eyebrow': 'Risultati',
     'results.title': 'Opzioni pronte da copiare',
     'results.empty': 'Descrivi la situazione e premi "Genera messaggio".',
@@ -253,10 +293,10 @@ const translations = {
     'buttons.saveFavorite': 'Salva nei preferiti',
     'buttons.favorited': 'Preferito',
     'buttons.useExample': 'Usa questo esempio',
-    'status.loading': 'Generazione in corso...',
+    'status.loading': 'Scrittura dei messaggi...',
     'status.ready': 'Opzioni pronte',
     'intensity.value.1': 'Leggero',
-    'intensity.value.2': 'Neutro',
+    'intensity.value.2': 'Normale',
     'intensity.value.3': 'Diretto',
     'intensity.value.4': 'Molto diretto'
   },
@@ -272,13 +312,21 @@ const translations = {
     'form.toneFormal': 'Formal',
     'form.toneClose': 'Próximo',
     'form.toneFun': 'Divertido',
-    'form.intensityLabel': 'Intensidade',
+    'form.intensityLabel': 'Firmeza',
     'form.intensity1': '1 Suave',
-    'form.intensity2': '2 Neutro',
+    'form.intensity2': '2 Normal',
     'form.intensity3': '3 Direto',
     'form.intensity4': '4 Bem direto',
     'form.generateBtn': 'Gerar mensagem',
     'form.humanized': 'Texto otimizado para soar natural e humano.',
+    'form.firmnessLabel': 'Firmeza',
+    'form.firmnessSoft': 'Suave',
+    'form.firmnessNormal': 'Normal',
+    'form.firmnessDirect': 'Direto',
+    'form.humanizeLabel': 'Humanizar',
+    'form.humanizeHelp': 'Deixa o tom mais natural e próximo quando ativado.',
+    'form.wordCount.singular': 'palavra',
+    'form.wordCount.plural': 'palavras',
     'results.eyebrow': 'Resultados',
     'results.title': 'Opções prontas para copiar',
     'results.empty': 'Descreva a situação e clique em "Gerar".',
@@ -305,10 +353,10 @@ const translations = {
     'buttons.saveFavorite': 'Salvar favorito',
     'buttons.favorited': 'Favorito',
     'buttons.useExample': 'Usar este exemplo',
-    'status.loading': 'Gerando mensagens...',
+    'status.loading': 'Escrevendo mensagens...',
     'status.ready': 'Opções prontas',
     'intensity.value.1': 'Suave',
-    'intensity.value.2': 'Neutro',
+    'intensity.value.2': 'Normal',
     'intensity.value.3': 'Direto',
     'intensity.value.4': 'Bem direto'
   }
@@ -451,13 +499,17 @@ const examplesContainer = document.getElementById('examples');
 const favoritesContainer = document.getElementById('favorites');
 const cookieBanner = document.getElementById('cookieBanner');
 const cookieAcceptBtn = document.getElementById('cookieAcceptBtn');
+const humanizeToggle = document.getElementById('humanizeToggle');
+const wordCounter = document.getElementById('situation-word-counter');
 const COOKIE_CONSENT_KEY = 'cookie_consent_accepted';
 
 const state = {
   favorites: [],
   history: [],
   lastMessages: [],
-  currentLanguage: (languageSelect && languageSelect.value) || 'es'
+  currentLanguage: (languageSelect && languageSelect.value) || 'es',
+  humanize: false,
+  wordCount: 0
 };
 
 const getDict = (lang) => translations[lang] || translations.es;
@@ -475,6 +527,39 @@ const updateIntensityLabel = () => {
   const dict = getDict(state.currentLanguage);
   const val = intensityRange.value;
   intensityValue.textContent = dict[`intensity.value.${val}`] || val;
+};
+
+const formatWordCount = (count) => {
+  const dict = getDict(state.currentLanguage);
+  const singular = dict['form.wordCount.singular'] || 'palabra';
+  const plural = dict['form.wordCount.plural'] || 'palabras';
+  const noun = count === 1 ? singular : plural;
+  return `${count} ${noun}`;
+};
+
+const updateWordCount = () => {
+  if (!wordCounter || !situationTextarea) return;
+  const text = (situationTextarea.value || '').trim();
+  const words = text ? text.split(/\s+/).filter(Boolean) : [];
+  const count = words.length;
+  state.wordCount = count;
+  wordCounter.textContent = formatWordCount(count);
+};
+
+const mapFirmnessFromSlider = (value) => {
+  const level = Number(value);
+  if (level === 1) return 'soft';
+  if (level === 2) return 'normal';
+  if (level === 3) return 'direct';
+  if (level === 4) return 'very_direct';
+  return 'normal';
+};
+
+const getClampedWordTarget = () => {
+  const count = Number(state.wordCount) || 0;
+  if (count < 10) return 10;
+  if (count > 300) return 300;
+  return count;
 };
 
 const applyLanguage = (lang) => {
@@ -498,6 +583,7 @@ const applyLanguage = (lang) => {
   });
 
   updateIntensityLabel();
+  updateWordCount();
   renderExamples();
   renderMessages(state.lastMessages);
   renderFavorites();
@@ -566,7 +652,7 @@ const normalizeMessages = (messages) => {
     .filter((m) => m.text?.trim());
 };
 
-const renderMessages = (messages) => {
+const renderMessages = (messages, animateTyping = false) => {
   const dict = getDict(state.currentLanguage);
   const normalized = normalizeMessages(messages);
   state.lastMessages = normalized;
@@ -588,8 +674,24 @@ const renderMessages = (messages) => {
     card.appendChild(tag);
 
     const text = document.createElement('p');
-    text.textContent = item.text;
+    if (animateTyping) {
+      const full = item.text || '';
+      text.textContent = '';
+      let idx = 0;
+      const interval = setInterval(() => {
+        text.textContent += full.charAt(idx);
+        idx += 1;
+        if (idx >= full.length) clearInterval(interval);
+      }, 25);
+    } else {
+      text.textContent = item.text;
+    }
     card.appendChild(text);
+
+    const wordCount = document.createElement('div');
+    wordCount.className = 'result-word-count';
+    wordCount.textContent = formatWordCount(item.text.trim().split(/\s+/).filter(Boolean).length);
+    card.appendChild(wordCount);
 
     const actions = document.createElement('div');
     actions.className = 'result-actions';
@@ -638,6 +740,11 @@ const renderFavorites = () => {
     const text = document.createElement('p');
     text.textContent = fav.text;
     card.appendChild(text);
+
+    const wordCount = document.createElement('div');
+    wordCount.className = 'result-word-count';
+    wordCount.textContent = formatWordCount(fav.text.trim().split(/\s+/).filter(Boolean).length);
+    card.appendChild(wordCount);
 
     const actions = document.createElement('div');
     actions.className = 'result-actions';
@@ -779,6 +886,7 @@ const applyExample = (example) => {
   toneSelect.value = example.tone;
   intensityRange.value = example.intensity;
   updateIntensityLabel();
+  updateWordCount();
   if (example.language && example.language !== state.currentLanguage) {
     applyLanguage(example.language);
   }
@@ -797,6 +905,8 @@ const saveHistoryEntry = (payload, messages) => {
     tone: payload.tone,
     intensity: payload.intensity,
     language: payload.language,
+    firmness: payload.firmness,
+    humanize: payload.humanize,
     messages
   };
   state.history.push(entry);
@@ -822,8 +932,22 @@ const generateMessages = async () => {
   const language = state.currentLanguage;
   const tone = toneSelect.value;
   const intensity = Number(intensityRange.value);
-  const situation = `${title} — ${description}`;
-  const payload = { situation, tone, intensity, language, channel: 'generic', quick: title };
+  const humanize = Boolean(humanizeToggle && humanizeToggle.checked);
+  state.humanize = humanize;
+  const firmness = mapFirmnessFromSlider(intensity);
+  const wordTarget = getClampedWordTarget();
+  const situation = `${title} - ${description}`;
+  const payload = {
+    situation,
+    tone,
+    intensity,
+    language,
+    channel: 'generic',
+    quick: title,
+    humanize,
+    firmness,
+    wordTarget
+  };
 
   setLoadingState(true);
 
@@ -842,16 +966,16 @@ const generateMessages = async () => {
           text: m.text,
           category: m.category || 'personalizado'
         }));
-      renderMessages(mapped);
+      renderMessages(mapped, true);
       saveHistoryEntry(payload, mapped);
     } else {
       const fallback = buildFallbackMessages(language);
-      renderMessages(fallback);
+      renderMessages(fallback, true);
     }
   } catch (error) {
     console.error('Generation failed', error);
     const fallback = buildFallbackMessages(state.currentLanguage);
-    renderMessages(fallback);
+    renderMessages(fallback, true);
   } finally {
     setLoadingState(false);
   }
@@ -903,10 +1027,16 @@ document.addEventListener('DOMContentLoaded', () => {
   loadFavorites();
   loadHistory();
   applyLanguage(state.currentLanguage);
-  updateIntensityLabel();
 
   languageSelect.addEventListener('change', (e) => applyLanguage(e.target.value));
   intensityRange.addEventListener('input', updateIntensityLabel);
+  situationTextarea.addEventListener('input', updateWordCount);
+  updateWordCount();
+  if (humanizeToggle) {
+    humanizeToggle.addEventListener('change', () => {
+      state.humanize = humanizeToggle.checked;
+    });
+  }
   generateBtn.addEventListener('click', generateMessages);
   initCookieBanner();
 });

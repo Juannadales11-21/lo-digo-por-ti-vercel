@@ -38,16 +38,15 @@ const languageNames = {
   pt: 'portugues'
 };
 
-function computeTemperature(toneLabel, intensityLevel) {
-  let base;
-  if (toneLabel === 'formal') base = 0.3;
-  else if (toneLabel === 'cercano') base = 0.7;
-  else if (toneLabel === 'divertido') base = 1.0;
-  else base = 0.6;
-
-  const adjust = { 1: -0.2, 2: 0, 3: 0.1, 4: 0.2 }[intensityLevel] || 0;
-  return Math.min(1.3, Math.max(0.1, Number((base + adjust).toFixed(2))));
-}
+const firmnessGuidance = {
+  soft:
+    'El mensaje debe ser muy cuidadoso y suave, priorizando empatia, comprension y delicadeza al expresar la idea.',
+  normal:
+    'El mensaje debe ser equilibrado: claro y respetuoso, sin sonar ni demasiado duro ni demasiado blando.',
+  direct: 'El mensaje debe ser claro y directo, expresando lo que necesitas de forma firme pero educada.',
+  very_direct:
+    'El mensaje debe ser muy claro y directo, marcando limites o necesidades de manera firme y sin rodeos, pero sin faltar al respeto.'
+};
 
 // Nota: en entorno serverless de Vercel no hay estado persistente para rate limiting en memoria.
 // Si se necesita control de abuso, se puede agregar mas adelante con soluciones como middleware externo o KV.
@@ -67,7 +66,7 @@ export default async function handler(req, res) {
     }
   }
 
-  const { situation, tone, channel, intensity, language } = body || {};
+  const { situation, tone, channel, intensity, language, humanize, firmness, wordTarget } = body || {};
 
   const trimmedSituation = (situation || '').trim();
   const toneLabel = (tone || 'formal').toLowerCase();
@@ -77,6 +76,16 @@ export default async function handler(req, res) {
     Number.isFinite(rawIntensity) && rawIntensity >= 1 && rawIntensity <= 4 ? Math.round(rawIntensity) : 2;
   const languageCode = (language || 'es').toLowerCase();
   const languageName = languageNames[languageCode] || languageNames.es;
+  const humanizeEnabled = humanize === true || humanize === 'true';
+  const firmnessKey = (firmness || '').toLowerCase();
+  const normalizedFirmness = ['soft', 'normal', 'direct', 'very_direct'].includes(firmnessKey)
+    ? firmnessKey
+    : 'normal';
+  const rawWordTarget = Number(wordTarget);
+  const safeWordTarget =
+    Number.isFinite(rawWordTarget) && rawWordTarget >= 10 && rawWordTarget <= 300
+      ? Math.round(rawWordTarget)
+      : 100;
 
   if (!trimmedSituation) {
     return res.status(400).json({ error: 'La situacion es obligatoria.' });
@@ -86,22 +95,28 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: 'Falta la clave de API. Configura OPENAI_API_KEY.' });
   }
 
-  const temperature = computeTemperature(toneLabel, intensityLevel);
   const channelInstruction = channelGuidance[channelKey] || channelGuidance.whatsapp;
-  const intensityLabel = intensityLabels[intensityLevel];
+  const firmnessInstruction = firmnessGuidance[normalizedFirmness];
+  const humanizeInstruction = humanizeEnabled
+    ? 'Si "humanize" esta activado, usa un estilo natural, cotidiano y cercano, como una persona real.'
+    : '';
+  const lengthInstruction = `Cada mensaje debe tener aproximadamente ${safeWordTarget} palabras. Acercate lo maximo posible a ese numero sin pasarte demasiado.`;
 
-  const prompt = `Idioma: ${languageName}. Responde siempre en ${languageName}, sin traducciones ni explicaciones.
-Tono: ${toneLabel}. Intensidad: ${intensityLevel} (${intensityLabel}).
-${channelInstruction}
-- Genera 3 opciones distintas, humanas y listas para copiar.
-- No uses frases de asistente o IA. Varヴa la redacciИn entre opciones.
-- Devuelve solo JSON valido exacto: {"messages": ["mensaje 1", "mensaje 2", "mensaje 3"]}.
-Situacion del usuario: ${trimmedSituation}`;
+  const prompt = `
+Eres una persona que escribe mensajes cortos listos para el canal indicado.
+Idioma: ${languageName}. Responde siempre en ${languageName}, sin traducciones adicionales.
+Canal: ${channelInstruction}
+Genera 3 versiones distintas para la siguiente situacion: "${trimmedSituation}".
+El tono debe ser: ${toneLabel}.
+${firmnessInstruction}
+${humanizeInstruction}
+${lengthInstruction}
+Devuelve la respuesta solo como JSON valido con esta forma:
+{"messages": ["mensaje 1", "mensaje 2", "mensaje 3"]}`.trim();
 
   try {
     const completion = await client.chat.completions.create({
       model: 'gpt-5-nano',
-      temperature,
       messages: [
         {
           role: 'system',

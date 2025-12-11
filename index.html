@@ -66,6 +66,7 @@
             rows="4"
             data-i18n-placeholder="form.descriptionPlaceholder"
             placeholder="Describe con detalle para ayudarte a decirlo mejor."></textarea>
+          <div class="word-counter" id="situation-word-counter">0 palabras</div>
         </div>
 
         <div class="field">
@@ -79,15 +80,26 @@
 
         <div class="field">
           <label for="intensityRange">
-            <span data-i18n="form.intensityLabel">Intensidad</span>
-            <span id="intensityValue" class="chip">Neutro</span>
+            <span data-i18n="form.intensityLabel">Firmeza</span>
+            <span id="intensityValue" class="chip">Normal</span>
           </label>
           <input id="intensityRange" type="range" min="1" max="4" step="1" value="2">
           <div class="intensity-scale">
             <span data-i18n="form.intensity1">1 Suave</span>
-            <span data-i18n="form.intensity2">2 Neutro</span>
+            <span data-i18n="form.intensity2">2 Normal</span>
             <span data-i18n="form.intensity3">3 Directo</span>
             <span data-i18n="form.intensity4">4 Muy directo</span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="toggle-header" for="humanizeToggle" data-i18n="form.humanizeLabel">Humanizar</label>
+          <div class="toggle-row">
+            <label class="switch">
+              <input type="checkbox" id="humanizeToggle">
+              <span class="slider"></span>
+            </label>
+            <span class="field-hint" data-i18n="form.humanizeHelp">Prioriza un estilo mas natural, calido y cercano.</span>
           </div>
         </div>
       </div>
