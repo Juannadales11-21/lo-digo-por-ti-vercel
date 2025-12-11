@@ -12,7 +12,7 @@ const translations = {
     'form.toneFormal': 'Formal',
     'form.toneClose': 'Cercano',
     'form.toneFun': 'Divertido',
-    'form.intensityLabel': 'Firmeza',
+    'form.intensityLabel': 'Intensidad',
     'form.intensity1': '1 Suave',
     'form.intensity2': '2 Normal',
     'form.intensity3': '3 Directo',
@@ -25,6 +25,10 @@ const translations = {
     'form.firmnessDirect': 'Directo',
     'form.humanizeLabel': 'Humanizar',
     'form.humanizeHelp': 'Activa un estilo mas natural, calido y cercano.',
+    'form.targetWordsLabel': 'Longitud objetivo',
+    'form.targetWordsHint': 'Palabras',
+    'form.targetWordsPlaceholder': 'Ej: 80',
+    'form.wordCountLabel': 'Recuento de palabras',
     'form.wordCount.singular': 'palabra',
     'form.wordCount.plural': 'palabras',
     'results.eyebrow': 'Resultados',
@@ -53,7 +57,7 @@ const translations = {
     'buttons.saveFavorite': 'Guardar favorito',
     'buttons.favorited': 'Favorito',
     'buttons.useExample': 'Usar este ejemplo',
-    'status.loading': 'Escribiendo mensajes...',
+    'status.loading': 'Generando mensajes...',
     'status.ready': 'Opciones listas',
     'intensity.value.1': 'Suave',
     'intensity.value.2': 'Normal',
@@ -72,7 +76,7 @@ const translations = {
     'form.toneFormal': 'Formal',
     'form.toneClose': 'Friendly',
     'form.toneFun': 'Playful',
-    'form.intensityLabel': 'Firmness',
+    'form.intensityLabel': 'Intensity',
     'form.intensity1': '1 Soft',
     'form.intensity2': '2 Normal',
     'form.intensity3': '3 Direct',
@@ -85,6 +89,9 @@ const translations = {
     'form.firmnessDirect': 'Direct',
     'form.humanizeLabel': 'Humanize',
     'form.humanizeHelp': 'Make the tone warmer and more natural when enabled.',
+    'form.targetWordsLabel': 'Target length',
+    'form.targetWordsHint': 'Words',
+    'form.targetWordsPlaceholder': 'e.g., 120',
     'form.wordCount.singular': 'word',
     'form.wordCount.plural': 'words',
     'results.eyebrow': 'Results',
@@ -113,7 +120,7 @@ const translations = {
     'buttons.saveFavorite': 'Save favorite',
     'buttons.favorited': 'Favorite',
     'buttons.useExample': 'Use this example',
-    'status.loading': 'Writing messages...',
+    'status.loading': 'Generating messages...',
     'status.ready': 'Options ready',
     'intensity.value.1': 'Soft',
     'intensity.value.2': 'Normal',
@@ -132,19 +139,22 @@ const translations = {
     'form.toneFormal': 'Formel',
     'form.toneClose': 'Proche',
     'form.toneFun': 'Ludique',
-    'form.intensityLabel': 'Fermeté',
+    'form.intensityLabel': 'Intensite',
     'form.intensity1': '1 Doux',
     'form.intensity2': '2 Équilibré',
     'form.intensity3': '3 Direct',
     'form.intensity4': '4 Très direct',
     'form.generateBtn': 'Générer',
     'form.humanized': 'Texte optimisé pour paraître naturel et humain.',
-    'form.firmnessLabel': 'Fermeté',
+    'form.firmnessLabel': 'Intensite',
     'form.firmnessSoft': 'Doux',
     'form.firmnessNormal': 'Équilibré',
     'form.firmnessDirect': 'Direct',
     'form.humanizeLabel': 'Humaniser',
     'form.humanizeHelp': 'Active un style plus naturel, chaleureux et humain.',
+    'form.targetWordsLabel': 'Longueur cible',
+    'form.targetWordsHint': 'Mots',
+    'form.targetWordsPlaceholder': 'Ex : 120',
     'form.wordCount.singular': 'mot',
     'form.wordCount.plural': 'mots',
     'results.eyebrow': 'Résultats',
@@ -173,7 +183,7 @@ const translations = {
     'buttons.saveFavorite': 'Enregistrer',
     'buttons.favorited': 'Favori',
     'buttons.useExample': 'Utiliser cet exemple',
-    'status.loading': 'Rédaction des messages...',
+    'status.loading': 'Generation des messages...',
     'status.ready': 'Options prêtes',
     'intensity.value.1': 'Doux',
     'intensity.value.2': 'Équilibré',
@@ -192,7 +202,10 @@ const translations = {
     'form.toneFormal': 'Formell',
     'form.toneClose': 'Nahbar',
     'form.toneFun': 'Locker',
-    'form.intensityLabel': 'Bestimmtheit',
+    'form.targetWordsLabel': 'Zielumfang',
+    'form.targetWordsHint': 'Woerter',
+    'form.targetWordsPlaceholder': 'z. B. 120',
+    'form.intensityLabel': 'Intensitaet',
     'form.intensity1': '1 Sanft',
     'form.intensity2': '2 Normal',
     'form.intensity3': '3 Direkt',
@@ -233,7 +246,7 @@ const translations = {
     'buttons.saveFavorite': 'Favorit speichern',
     'buttons.favorited': 'Favorit',
     'buttons.useExample': 'Beispiel nutzen',
-    'status.loading': 'Nachrichten werden geschrieben...',
+    'status.loading': 'Nachrichten werden generiert...',
     'status.ready': 'Optionen bereit',
     'intensity.value.1': 'Sanft',
     'intensity.value.2': 'Normal',
@@ -252,7 +265,10 @@ const translations = {
     'form.toneFormal': 'Formale',
     'form.toneClose': 'Vicino',
     'form.toneFun': 'Divertente',
-    'form.intensityLabel': 'Firmezza',
+    'form.targetWordsLabel': 'Lunghezza obiettivo',
+    'form.targetWordsHint': 'Parole',
+    'form.targetWordsPlaceholder': 'Es: 120',
+    'form.intensityLabel': 'Intensita',
     'form.intensity1': '1 Leggero',
     'form.intensity2': '2 Normale',
     'form.intensity3': '3 Diretto',
@@ -293,7 +309,7 @@ const translations = {
     'buttons.saveFavorite': 'Salva nei preferiti',
     'buttons.favorited': 'Preferito',
     'buttons.useExample': 'Usa questo esempio',
-    'status.loading': 'Scrittura dei messaggi...',
+    'status.loading': 'Generazione dei messaggi...',
     'status.ready': 'Opzioni pronte',
     'intensity.value.1': 'Leggero',
     'intensity.value.2': 'Normale',
@@ -312,7 +328,7 @@ const translations = {
     'form.toneFormal': 'Formal',
     'form.toneClose': 'Próximo',
     'form.toneFun': 'Divertido',
-    'form.intensityLabel': 'Firmeza',
+    'form.intensityLabel': 'Intensidad',
     'form.intensity1': '1 Suave',
     'form.intensity2': '2 Normal',
     'form.intensity3': '3 Direto',
@@ -353,7 +369,7 @@ const translations = {
     'buttons.saveFavorite': 'Salvar favorito',
     'buttons.favorited': 'Favorito',
     'buttons.useExample': 'Usar este exemplo',
-    'status.loading': 'Escrevendo mensagens...',
+    'status.loading': 'Gerando mensagens...',
     'status.ready': 'Opções prontas',
     'intensity.value.1': 'Suave',
     'intensity.value.2': 'Normal',
@@ -361,6 +377,49 @@ const translations = {
     'intensity.value.4': 'Bem direto'
   }
 };
+
+const targetWordsTranslations = {
+  es: {
+    'form.targetWordsLabel': 'Longitud objetivo',
+    'form.targetWordsHint': 'Palabras',
+    'form.targetWordsPlaceholder': 'Ej: 80',
+    'form.wordCountLabel': 'Recuento de palabras'
+  },
+  en: {
+    'form.targetWordsLabel': 'Target length',
+    'form.targetWordsHint': 'Words',
+    'form.targetWordsPlaceholder': 'e.g., 80',
+    'form.wordCountLabel': 'Word count'
+  },
+  fr: {
+    'form.targetWordsLabel': 'Longueur cible',
+    'form.targetWordsHint': 'Mots',
+    'form.targetWordsPlaceholder': 'Ex : 80',
+    'form.wordCountLabel': 'Compte de mots'
+  },
+  de: {
+    'form.targetWordsLabel': 'Zielumfang',
+    'form.targetWordsHint': 'Woerter',
+    'form.targetWordsPlaceholder': 'z. B. 80',
+    'form.wordCountLabel': 'Wortzahl'
+  },
+  it: {
+    'form.targetWordsLabel': 'Lunghezza obiettivo',
+    'form.targetWordsHint': 'Parole',
+    'form.targetWordsPlaceholder': 'Es: 80',
+    'form.wordCountLabel': 'Conteggio parole'
+  },
+  pt: {
+    'form.targetWordsLabel': 'Comprimento alvo',
+    'form.targetWordsHint': 'Palavras',
+    'form.targetWordsPlaceholder': 'Ex.: 80',
+    'form.wordCountLabel': 'Contagem de palavras'
+  }
+};
+
+Object.entries(targetWordsTranslations).forEach(([lang, entries]) => {
+  translations[lang] = { ...(translations[lang] || {}), ...entries };
+});
 
 const exampleLanguages = ['es', 'en', 'fr', 'de', 'it', 'pt'];
 
@@ -484,6 +543,9 @@ const examples = exampleLanguages.flatMap((lang) =>
 );
 
 const MAX_MESSAGES = 3;
+const TARGET_WORDS_DEFAULT = 100;
+const TARGET_WORDS_MIN = 20;
+const TARGET_WORDS_MAX = 400;
 const FAVORITES_KEY = 'ldpt_favorites';
 const HISTORY_KEY = 'ldpt_history';
 
@@ -500,6 +562,7 @@ const favoritesContainer = document.getElementById('favorites');
 const cookieBanner = document.getElementById('cookieBanner');
 const cookieAcceptBtn = document.getElementById('cookieAcceptBtn');
 const humanizeToggle = document.getElementById('humanizeToggle');
+const targetWordsInput = document.getElementById('targetWordsInput');
 const wordCounter = document.getElementById('situation-word-counter');
 const COOKIE_CONSENT_KEY = 'cookie_consent_accepted';
 
@@ -509,10 +572,11 @@ const state = {
   lastMessages: [],
   currentLanguage: (languageSelect && languageSelect.value) || 'es',
   humanize: false,
-  wordCount: 0
+  wordCount: 0,
+  targetWords: TARGET_WORDS_DEFAULT
 };
 
-const getDict = (lang) => translations[lang] || translations.es;
+const getDict = (lang) => ({ ...translations.es, ...(translations[lang] || {}) });
 
 const shuffle = (arr) => {
   const cloned = [...arr];
@@ -546,6 +610,34 @@ const updateWordCount = () => {
   wordCounter.textContent = formatWordCount(count);
 };
 
+const initializeTargetWordsInput = () => {
+  if (!targetWordsInput) return;
+  const initialValue = targetWordsInput.value;
+  const initial = clampTargetWords(initialValue === '' ? undefined : initialValue);
+  if (initialValue === '') {
+    state.targetWords = TARGET_WORDS_DEFAULT;
+  } else {
+    targetWordsInput.value = initial;
+    state.targetWords = initial;
+  }
+
+  const syncValue = () => {
+    if (targetWordsInput.value === '') {
+      state.targetWords = TARGET_WORDS_DEFAULT;
+      return;
+    }
+    const sanitized = clampTargetWords(targetWordsInput.value);
+    targetWordsInput.value = sanitized;
+    state.targetWords = sanitized;
+  };
+
+  targetWordsInput.addEventListener('change', syncValue);
+  targetWordsInput.addEventListener('blur', syncValue);
+  targetWordsInput.addEventListener('input', () => {
+    state.targetWords = targetWordsInput.value === '' ? TARGET_WORDS_DEFAULT : clampTargetWords(targetWordsInput.value);
+  });
+};
+
 const mapFirmnessFromSlider = (value) => {
   const level = Number(value);
   if (level === 1) return 'soft';
@@ -555,11 +647,18 @@ const mapFirmnessFromSlider = (value) => {
   return 'normal';
 };
 
-const getClampedWordTarget = () => {
-  const count = Number(state.wordCount) || 0;
-  if (count < 10) return 10;
-  if (count > 300) return 300;
-  return count;
+const clampTargetWords = (value) => {
+  if (value === '' || value === null || value === undefined) return TARGET_WORDS_DEFAULT;
+  const num = Number(value);
+  if (!Number.isFinite(num)) return TARGET_WORDS_DEFAULT;
+  return Math.min(TARGET_WORDS_MAX, Math.max(TARGET_WORDS_MIN, Math.round(num)));
+};
+
+const getTargetWordsValue = () => {
+  const raw = targetWordsInput ? targetWordsInput.value : '';
+  const validated = clampTargetWords(raw);
+  state.targetWords = validated;
+  return validated;
 };
 
 const applyLanguage = (lang) => {
@@ -652,6 +751,31 @@ const normalizeMessages = (messages) => {
     .filter((m) => m.text?.trim());
 };
 
+const typeText = (element, fullText) => {
+  const words = (fullText || '').split(/\s+/).filter(Boolean);
+  if (!words.length) {
+    element.textContent = fullText || '';
+    return;
+  }
+
+  const chunkSize = words.length > 120 ? 4 : words.length > 60 ? 3 : words.length > 30 ? 2 : 1;
+  const intervalMs = words.length > 120 ? 14 : words.length > 60 ? 18 : 24;
+  let index = 0;
+  let current = '';
+
+  const interval = setInterval(() => {
+    const slice = words.slice(index, index + chunkSize);
+    index += chunkSize;
+    current = current ? `${current} ${slice.join(' ')}` : slice.join(' ');
+    element.textContent = current;
+
+    if (index >= words.length) {
+      clearInterval(interval);
+      element.textContent = fullText;
+    }
+  }, intervalMs);
+};
+
 const renderMessages = (messages, animateTyping = false) => {
   const dict = getDict(state.currentLanguage);
   const normalized = normalizeMessages(messages);
@@ -675,14 +799,7 @@ const renderMessages = (messages, animateTyping = false) => {
 
     const text = document.createElement('p');
     if (animateTyping) {
-      const full = item.text || '';
-      text.textContent = '';
-      let idx = 0;
-      const interval = setInterval(() => {
-        text.textContent += full.charAt(idx);
-        idx += 1;
-        if (idx >= full.length) clearInterval(interval);
-      }, 25);
+      typeText(text, item.text || '');
     } else {
       text.textContent = item.text;
     }
@@ -907,6 +1024,7 @@ const saveHistoryEntry = (payload, messages) => {
     language: payload.language,
     firmness: payload.firmness,
     humanize: payload.humanize,
+    targetWords: payload.targetWords,
     messages
   };
   state.history.push(entry);
@@ -917,7 +1035,7 @@ const setLoadingState = (isLoading) => {
   generateBtn.disabled = isLoading;
   const dict = getDict(state.currentLanguage);
   if (isLoading) {
-    resultsContainer.innerHTML = `<p class="status">${dict['status.loading']}</p>`;
+    resultsContainer.innerHTML = `<p class="status loading">${dict['status.loading']}</p>`;
   }
 };
 
@@ -935,7 +1053,7 @@ const generateMessages = async () => {
   const humanize = Boolean(humanizeToggle && humanizeToggle.checked);
   state.humanize = humanize;
   const firmness = mapFirmnessFromSlider(intensity);
-  const wordTarget = getClampedWordTarget();
+  const targetWords = getTargetWordsValue();
   const situation = `${title} - ${description}`;
   const payload = {
     situation,
@@ -946,7 +1064,7 @@ const generateMessages = async () => {
     quick: title,
     humanize,
     firmness,
-    wordTarget
+    targetWords
   };
 
   setLoadingState(true);
@@ -1032,6 +1150,7 @@ document.addEventListener('DOMContentLoaded', () => {
   intensityRange.addEventListener('input', updateIntensityLabel);
   situationTextarea.addEventListener('input', updateWordCount);
   updateWordCount();
+  initializeTargetWordsInput();
   if (humanizeToggle) {
     humanizeToggle.addEventListener('change', () => {
       state.humanize = humanizeToggle.checked;

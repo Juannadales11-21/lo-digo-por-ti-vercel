@@ -164,6 +164,22 @@ label {
   color: #dce2ff;
 }
 
+.target-words-label {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.label-caption {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.target-words-input {
+  max-width: 200px;
+}
+
 input,
 textarea,
 select {
@@ -244,6 +260,18 @@ textarea {
   align-items: flex-start;
   gap: 12px;
   flex-wrap: wrap;
+}
+
+.humanize-toggle-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.humanize-toggle-button {
+  white-space: normal;
+  padding: 4px 0;
 }
 
 .switch {
@@ -447,6 +475,22 @@ h3 {
   background: rgba(58, 225, 255, 0.08);
 }
 
+.status.loading {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status.loading::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.18);
+  border-top-color: var(--accent-2);
+  animation: spin 0.8s linear infinite;
+}
+
 .result-actions {
   display: flex;
   gap: 8px;
@@ -636,6 +680,12 @@ a:focus-visible {
   color: var(--muted);
   line-height: 1.5;
   flex: 1;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @media (max-width: 720px) {

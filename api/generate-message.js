@@ -66,7 +66,7 @@ export default async function handler(req, res) {
     }
   }
 
-  const { situation, tone, channel, intensity, language, humanize, firmness, wordTarget } = body || {};
+  const { situation, tone, channel, intensity, language, humanize, firmness, targetWords, wordTarget } = body || {};
 
   const trimmedSituation = (situation || '').trim();
   const toneLabel = (tone || 'formal').toLowerCase();
@@ -81,11 +81,10 @@ export default async function handler(req, res) {
   const normalizedFirmness = ['soft', 'normal', 'direct', 'very_direct'].includes(firmnessKey)
     ? firmnessKey
     : 'normal';
-  const rawWordTarget = Number(wordTarget);
-  const safeWordTarget =
-    Number.isFinite(rawWordTarget) && rawWordTarget >= 10 && rawWordTarget <= 300
-      ? Math.round(rawWordTarget)
-      : 100;
+  const requestedWords = targetWords ?? wordTarget;
+  const parsedTargetWords = Number(requestedWords);
+  const fallbackTarget = Number.isFinite(parsedTargetWords) ? parsedTargetWords : 100;
+  const words = Math.min(400, Math.max(20, fallbackTarget));
 
   if (!trimmedSituation) {
     return res.status(400).json({ error: 'La situacion es obligatoria.' });
@@ -98,20 +97,19 @@ export default async function handler(req, res) {
   const channelInstruction = channelGuidance[channelKey] || channelGuidance.whatsapp;
   const firmnessInstruction = firmnessGuidance[normalizedFirmness];
   const humanizeInstruction = humanizeEnabled
-    ? 'Si "humanize" esta activado, usa un estilo natural, cotidiano y cercano, como una persona real.'
+    ? 'Usa un estilo muy natural, cotidiano y humano, como si fuera una persona real.'
     : '';
-  const lengthInstruction = `Cada mensaje debe tener aproximadamente ${safeWordTarget} palabras. Acercate lo maximo posible a ese numero sin pasarte demasiado.`;
 
   const prompt = `
-Eres una persona que escribe mensajes cortos listos para el canal indicado.
+Eres un asistente que escribe mensajes cortos listos para WhatsApp o email.
 Idioma: ${languageName}. Responde siempre en ${languageName}, sin traducciones adicionales.
 Canal: ${channelInstruction}
 Genera 3 versiones distintas para la siguiente situacion: "${trimmedSituation}".
 El tono debe ser: ${toneLabel}.
 ${firmnessInstruction}
 ${humanizeInstruction}
-${lengthInstruction}
-Devuelve la respuesta solo como JSON valido con esta forma:
+Cada mensaje debe tener aproximadamente ${words} palabras. No hace falta que sea exacto, pero intenta acercarte lo maximo posible a esa longitud.
+Responde siempre SOLO con JSON valido con esta forma:
 {"messages": ["mensaje 1", "mensaje 2", "mensaje 3"]}`.trim();
 
   try {

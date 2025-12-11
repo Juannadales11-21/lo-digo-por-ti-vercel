@@ -80,7 +80,7 @@
 
         <div class="field">
           <label for="intensityRange">
-            <span data-i18n="form.intensityLabel">Firmeza</span>
+            <span data-i18n="form.intensityLabel">Intensidad</span>
             <span id="intensityValue" class="chip">Normal</span>
           </label>
           <input id="intensityRange" type="range" min="1" max="4" step="1" value="2">
@@ -93,9 +93,25 @@
         </div>
 
         <div class="field">
+          <label for="targetWordsInput" class="target-words-label">
+            <span data-i18n="form.targetWordsLabel">Longitud objetivo</span>
+            <span class="label-caption" data-i18n="form.targetWordsHint">Palabras</span>
+          </label>
+          <input
+            id="targetWordsInput"
+            class="target-words-input"
+            type="number"
+            min="20"
+            max="400"
+            inputmode="numeric"
+            data-i18n-placeholder="form.targetWordsPlaceholder"
+            placeholder="Ej: 80">
+        </div>
+
+        <div class="field">
           <label class="toggle-header" for="humanizeToggle" data-i18n="form.humanizeLabel">Humanizar</label>
-          <div class="toggle-row">
-            <label class="switch">
+          <div class="toggle-row humanize-toggle-container">
+            <label class="switch humanize-toggle-button">
               <input type="checkbox" id="humanizeToggle">
               <span class="slider"></span>
             </label>
