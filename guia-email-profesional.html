@@ -14,15 +14,26 @@
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="legal.css">
 </head>
-<body>
+<body data-page="guide">
 
   <div class="legal-shell">
     <header class="legal-header">
-      <div class="brand-mark">
+      <a class="brand-mark" href="/" data-keep-lang="true" id="brandLink" aria-label="Lo Digo Por Ti" title="Lo Digo Por Ti">
         <span class="brand-dot"></span>
         <span>Lo Digo Por Ti</span>
+      </a>
+      <div class="language-pill">
+        <span class="lang-icon">&#127760;</span>
+        <select id="languageSelect" aria-label="Selecciona idioma" title="Seleccionar idioma del sitio" data-i18n-aria-label="aria.language" data-i18n-title="aria.languageTitle">
+          <option value="es">Español</option>
+          <option value="en">English</option>
+          <option value="fr">Français</option>
+          <option value="de">Deutsch</option>
+          <option value="it">Italiano</option>
+          <option value="pt">Português</option>
+        </select>
       </div>
-      <a class="back-link" href="index.html">Volver al inicio</a>
+      <a class="back-link" href="index.html" data-i18n="nav.back" data-keep-lang="true">Volver al inicio</a>
     </header>
 
     <main class="legal-card">
@@ -134,5 +145,6 @@
       </section>
     </main>
   </div>
+  <script src="script.js" defer></script>
 </body>
 </html>

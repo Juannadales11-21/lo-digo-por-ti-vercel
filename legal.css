@@ -79,6 +79,8 @@ a:hover {
 }
 
 .back-link {
+  display: inline-block;
+  margin-top: 8px;
   color: var(--text);
   font-weight: 700;
   padding: 10px 14px;

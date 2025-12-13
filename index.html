@@ -3,47 +3,51 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Lo Digo Por Ti es una herramienta con IA para generar mensajes claros, humanos e indetectables para WhatsApp, email y más.">
-  <meta name="keywords" content="mensajes, IA, whatsapp, escribir, textos, comunicación, lo digo por ti, generador de mensajes">
+  <meta name="description" content="Generador de mensajes con IA gratis y en español. Crea frases automáticas y textos listos para copiar y pegar para WhatsApp, email o redes sociales con tono humano.">
+  <meta name="keywords" content="generador de mensajes con IA, mensajes con IA gratis, crear mensajes automáticos, frases con inteligencia artificial, textos generados por IA para copiar, textos con IA para WhatsApp">
   <meta name="robots" content="index, follow">
-  <meta property="og:title" content="Lo Digo Por Ti - Mensajes con IA">
-  <meta property="og:description" content="Genera mensajes claros, humanos e indetectables para cualquier situación.">
+  <meta property="og:title" content="Generador de mensajes con IA gratis | Lo Digo Por Ti">
+  <meta property="og:description" content="Genera mensajes con IA gratis para copiar y pegar con tono humano en WhatsApp, email o redes sociales.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://lodigoporti.com">
   <meta property="og:image" content="/logo.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Generador de mensajes con IA gratis | Lo Digo Por Ti">
+  <meta name="twitter:description" content="Crea mensajes automáticos con IA, gratis y listos para copiar, para WhatsApp, email y redes sociales.">
+  <meta name="twitter:image" content="/logo.png">
   <link rel="icon" href="/favicon.ico">
   <link rel="canonical" href="https://lodigoporti.com/">
-  <title>Lo Digo Por Ti - Mensajes con IA</title>
+  <title>Generador de mensajes con IA gratis | Lo Digo Por Ti</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body data-page="home">
 
   <div class="page">
     <header class="top-bar">
-      <a class="brand" href="/">
+      <a class="brand" href="/" aria-label="Lo Digo Por Ti, generador de mensajes con IA gratis" title="Lo Digo Por Ti" data-i18n-aria-label="aria.brand" data-i18n-title="aria.brand" id="brandLink" data-keep-lang="true">
         <div class="brand-dot"></div>
         <div class="brand-text">Lo digo por ti</div>
       </a>
       <div class="language-pill">
         <span class="lang-icon">&#127760;</span>
-        <select id="languageSelect" aria-label="Selecciona idioma">
+        <select id="languageSelect" aria-label="Selecciona idioma" title="Seleccionar idioma del generador" data-i18n-aria-label="aria.language" data-i18n-title="aria.languageTitle">
           <option value="es">Español</option>
           <option value="en">English</option>
           <option value="fr">Français</option>
           <option value="de">Deutsch</option>
           <option value="it">Italiano</option>
-        <option value="pt">Português</option>
+          <option value="pt">Português</option>
         </select>
       </div>
     </header>
 <section class="card hero">
-      <p class="badge" data-i18n="hero.badge">Mensajes premium</p>
-      <h1 data-i18n="hero.title">Lo digo por ti</h1>
+      <p class="badge" data-i18n="hero.badge">Generador de frases con IA</p>
+      <h1 data-i18n="hero.title">Generador de mensajes con IA gratis</h1>
       <p class="subtitle" data-i18n="hero.subtitle">
-        Genera mensajes listos para enviar en segundos con un tono impecable y humano.
+        Crea mensajes automáticos y textos listos para copiar y pegar con inteligencia artificial, tono humano y tu estilo en segundos.
       </p>
     </section>
 
@@ -56,7 +60,11 @@
             id="situationInput"
             type="text"
             data-i18n-placeholder="form.situationPlaceholder"
-            placeholder="Ej: Recordar un pago pendiente">
+            placeholder="Ej: Recordar un pago pendiente"
+            aria-label="Busca una situación para generar mensajes con IA"
+            title="Describe la situación que quieres resolver con IA"
+            data-i18n-aria-label="aria.situationInput"
+            data-i18n-title="aria.situationTitle">
         </div>
 
         <div class="field field-full">
@@ -65,13 +73,17 @@
             id="situationTextarea"
             rows="4"
             data-i18n-placeholder="form.descriptionPlaceholder"
-            placeholder="Describe con detalle para ayudarte a decirlo mejor."></textarea>
+            placeholder="Describe con detalle para ayudarte a decirlo mejor."
+            aria-label="Describe tu situación para generar mensajes personalizados con IA"
+            title="Añade contexto para obtener mejores mensajes con IA"
+            data-i18n-aria-label="aria.descriptionInput"
+            data-i18n-title="aria.descriptionTitle"></textarea>
           <div class="word-counter" id="situation-word-counter">0 palabras</div>
         </div>
 
         <div class="field">
           <label for="toneSelect" data-i18n="form.toneLabel">Tono</label>
-          <select id="toneSelect">
+          <select id="toneSelect" aria-label="Selecciona el tono del mensaje" title="Elige el tono del mensaje generado" data-i18n-aria-label="aria.tone" data-i18n-title="aria.toneTitle">
             <option value="formal" data-i18n="form.toneFormal">Formal</option>
             <option value="cercano" data-i18n="form.toneClose">Cercano</option>
             <option value="divertido" data-i18n="form.toneFun">Divertido</option>
@@ -83,7 +95,7 @@
             <span data-i18n="form.intensityLabel">Intensidad</span>
             <span id="intensityValue" class="chip">Normal</span>
           </label>
-          <input id="intensityRange" type="range" min="1" max="4" step="1" value="2">
+          <input id="intensityRange" type="range" min="1" max="4" step="1" value="2" aria-label="Ajusta la intensidad del mensaje generado" title="Selecciona el nivel de intensidad" data-i18n-aria-label="aria.intensity" data-i18n-title="aria.intensity">
           <div class="intensity-scale">
             <span data-i18n="form.intensity1">1 Suave</span>
             <span data-i18n="form.intensity2">2 Normal</span>
@@ -105,14 +117,18 @@
             max="400"
             inputmode="numeric"
             data-i18n-placeholder="form.targetWordsPlaceholder"
-            placeholder="Ej: 80">
+            placeholder="Ej: 80"
+            aria-label="Define la longitud objetivo del mensaje en palabras"
+            title="Escoge cuántas palabras quieres en tu mensaje"
+            data-i18n-aria-label="aria.targetWords"
+            data-i18n-title="aria.targetWordsTitle">
         </div>
 
         <div class="field">
           <label class="toggle-header" for="humanizeToggle" data-i18n="form.humanizeLabel">Humanizar</label>
           <div class="toggle-row humanize-toggle-container">
             <label class="switch humanize-toggle-button">
-              <input type="checkbox" id="humanizeToggle">
+              <input type="checkbox" id="humanizeToggle" aria-label="Activar estilo más humano en el mensaje" title="Humanizar el mensaje generado" data-i18n-aria-label="aria.humanize" data-i18n-title="aria.humanize">
               <span class="slider"></span>
             </label>
             <span class="field-hint" data-i18n="form.humanizeHelp">Prioriza un estilo mas natural, calido y cercano.</span>
@@ -121,7 +137,7 @@
       </div>
 
       <div class="actions">
-        <button id="generateBtn" class="primary-btn" data-i18n="form.generateBtn" type="button">Generar mensaje</button>
+        <button id="generateBtn" class="primary-btn" data-i18n="form.generateBtn" type="button" aria-label="Generar mensajes con IA gratis" title="Generar mensajes con IA gratis" data-i18n-aria-label="aria.generate" data-i18n-title="aria.generate">Generar mensaje</button>
         <span class="human-badge" data-i18n="form.humanized">Texto optimizado para sonar natural y humano.</span>
       </div>
     </section>
@@ -129,7 +145,7 @@
       <div class="section-header">
         <div>
           <p class="eyebrow" data-i18n="results.eyebrow">Resultados</p>
-          <h2 data-i18n="results.title">Opciones listas para copiar</h2>
+          <h2 data-i18n="results.title">Mensajes con IA listos para copiar</h2>
         </div>
       </div>
       <div id="results" class="results">
@@ -137,7 +153,7 @@
           Escribe la situación y pulsa "Generar mensaje".
         </p>
       </div>
-      <p class="ia-notice">Los mensajes generados por IA son orientativos. Úsalos según tu criterio.</p>
+      <p class="ia-notice" data-i18n="results.notice">Los mensajes generados por IA son orientativos. Úsalos según tu criterio.</p>
     </section>
 
     <section class="card examples-card">
@@ -151,9 +167,9 @@
     </section>
 
     <section class="guides-teaser">
-      <h2>¿No sabes cómo decirlo?</h2>
-      <p>Explora nuestras mini-guías prácticas para inspirarte según el tipo de situación.</p>
-      <a href="guias.html" class="guides-link-button">Ver guías</a>
+      <h2 data-i18n="home.guides.title">¿No sabes cómo decirlo?</h2>
+      <p data-i18n="home.guides.subtitle">Explora nuestras mini-guías prácticas para inspirarte según el tipo de situación.</p>
+      <a href="guias.html" class="guides-link-button" data-i18n="home.guides.cta" data-keep-lang="true">Ver guías</a>
     </section>
 
     <section class="card favorites-card">
@@ -171,23 +187,25 @@
       <div class="footer-inner">
         <p class="footer-copy">© 2025 Lo Digo Por Ti</p>
         <nav class="footer-nav">
-          <a href="guias.html">Guías</a>
-          <a href="privacy.html">Privacidad</a>
-          <a href="terms.html">Términos</a>
-          <a href="cookies.html">Cookies</a>
+          <a href="guias.html" data-i18n="footer.guides" data-keep-lang="true">Guías</a>
+          <a href="faq.html" data-i18n="footer.faq" data-keep-lang="true">FAQ</a>
+          <a href="quienes-somos.html" data-i18n="footer.about" data-keep-lang="true">Quiénes somos</a>
+          <a href="contacto.html" data-i18n="footer.contact" data-keep-lang="true">Contacto</a>
+          <a href="privacy.html" data-i18n="footer.privacy" data-keep-lang="true">Privacidad</a>
+          <a href="terms.html" data-i18n="footer.terms" data-keep-lang="true">Términos</a>
+          <a href="cookies.html" data-i18n="footer.cookies" data-keep-lang="true">Cookies</a>
         </nav>
       </div>
     </footer>
 
   </div>
 
-  <div id="cookieBanner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Aviso de cookies" aria-hidden="true">
+  <div id="cookieBanner" class="cookie-banner" role="dialog" aria-live="polite" aria-label="Aviso de cookies" aria-hidden="true" data-i18n-aria-label="aria.cookieBanner">
     <p>
-      Este sitio utiliza cookies técnicas y almacenamiento local para mejorar tu experiencia.
-      En el futuro podremos usar cookies de terceros para personalizar anuncios y medir su rendimiento. Más info en nuestra
-      <a href="cookies.html">Política de Cookies</a>.
+      <span data-i18n="cookies.message">Este sitio utiliza cookies técnicas y almacenamiento local para mejorar tu experiencia. Más info en nuestra</span>
+      <a href="cookies.html" data-i18n="cookies.link">Política de Cookies</a>.
     </p>
-    <button id="cookieAcceptBtn" class="btn" type="button">Aceptar</button>
+    <button id="cookieAcceptBtn" class="btn" type="button" aria-label="Aceptar aviso de cookies" title="Aceptar aviso de cookies" data-i18n="cookies.accept" data-i18n-aria-label="aria.cookieAccept" data-i18n-title="aria.cookieAccept">Aceptar</button>
   </div>
 <script src="script.js" defer></script>
 </body>
