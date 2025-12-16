@@ -126,6 +126,35 @@ const normalizeTargetWords = (value) => {
   return Math.min(MAX_WORDS, Math.max(MIN_WORDS, Math.round(parsed)));
 };
 
+const isTokenParamError = (error) => {
+  const status = error?.status || error?.response?.status;
+  if (status !== 400 && status !== 422) return false;
+  const message = `${error?.message || ''} ${error?.error?.message || ''} ${JSON.stringify(error?.error || {})}`.toLowerCase();
+  return (
+    message.includes('max_tokens') ||
+    message.includes('max completion tokens') ||
+    message.includes('max_completion_tokens') ||
+    message.includes('unknown parameter') ||
+    message.includes('unrecognized')
+  );
+};
+
+const callOpenAIWithOptionalTokenLimit = async (client, payload, maxTokens) => {
+  const basePayload = { ...payload };
+  if (maxTokens) {
+    try {
+      return await client.chat.completions.create({
+        ...basePayload,
+        max_completion_tokens: maxTokens
+      });
+    } catch (error) {
+      if (!isTokenParamError(error)) throw error;
+      // Retry without token limit if the parameter is not supported.
+    }
+  }
+  return client.chat.completions.create(basePayload);
+};
+
 app.post('/api/generate-message', generateMessageLimiter, enforceDailyLimit, async (req, res) => {
   const { situation, tone, channel, intensity, language, humanize, firmness, wordTarget } = req.body || {};
 
@@ -174,18 +203,21 @@ Devuelve la respuesta solo como JSON valido con esta forma:
 {"messages": ["mensaje 1", "mensaje 2", "mensaje 3"]}`.trim();
 
   try {
-    const completion = await openai.chat.completions.create({
-      model: 'gpt-5-nano',
-      max_tokens: maxTokens,
-      messages: [
-        {
-          role: 'system',
-          content:
-            'Eres una persona que redacta mensajes breves y naturales para distintos canales. Responde siempre en el idioma indicado por el usuario, sin traducciones adicionales, y devuelve solo JSON con la forma {"messages": ["mensaje 1", "mensaje 2", "mensaje 3"]}.'
-        },
-        { role: 'user', content: prompt }
-      ]
-    });
+    const completion = await callOpenAIWithOptionalTokenLimit(
+      openai,
+      {
+        model: 'gpt-5-nano',
+        messages: [
+          {
+            role: 'system',
+            content:
+              'Eres una persona que redacta mensajes breves y naturales para distintos canales. Responde siempre en el idioma indicado por el usuario, sin traducciones adicionales, y devuelve solo JSON con la forma {"messages": ["mensaje 1", "mensaje 2", "mensaje 3"]}.'
+          },
+          { role: 'user', content: prompt }
+        ]
+      },
+      maxTokens
+    );
 
     const rawContent = completion.choices?.[0]?.message?.content?.trim() || '';
     let parsed;

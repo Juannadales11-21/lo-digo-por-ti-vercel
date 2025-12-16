@@ -65,6 +65,35 @@ const normalizeTargetWords = (value) => {
   return Math.min(MAX_WORDS, Math.max(MIN_WORDS, Math.round(parsed)));
 };
 
+const isTokenParamError = (error) => {
+  const status = error?.status || error?.response?.status;
+  if (status !== 400 && status !== 422) return false;
+  const message = `${error?.message || ''} ${error?.error?.message || ''} ${JSON.stringify(error?.error || {})}`.toLowerCase();
+  return (
+    message.includes('max_tokens') ||
+    message.includes('max completion tokens') ||
+    message.includes('max_completion_tokens') ||
+    message.includes('unknown parameter') ||
+    message.includes('unrecognized')
+  );
+};
+
+const callOpenAIWithOptionalTokenLimit = async (client, payload, maxTokens) => {
+  const basePayload = { ...payload };
+  if (maxTokens) {
+    try {
+      return await client.chat.completions.create({
+        ...basePayload,
+        max_completion_tokens: maxTokens
+      });
+    } catch (error) {
+      if (!isTokenParamError(error)) throw error;
+      // Retry without token limit if the parameter is not supported.
+    }
+  }
+  return client.chat.completions.create(basePayload);
+};
+
 // Nota: en entorno serverless de Vercel no hay estado persistente para rate limiting en memoria.
 // Si se necesita control de abuso, se puede agregar mas adelante con soluciones como middleware externo o KV.
 
@@ -129,9 +158,8 @@ Responde siempre SOLO con JSON valido con esta forma:
 {"messages": ["mensaje 1", "mensaje 2", "mensaje 3"]}`.trim();
 
   try {
-    const completion = await client.chat.completions.create({
+    const completion = await callOpenAIWithOptionalTokenLimit(client, {
       model: 'gpt-5-nano',
-      max_tokens: maxTokens,
       messages: [
         {
           role: 'system',
@@ -140,7 +168,7 @@ Responde siempre SOLO con JSON valido con esta forma:
         },
         { role: 'user', content: prompt }
       ]
-    });
+    }, maxTokens);
 
     const rawContent = completion.choices?.[0]?.message?.content?.trim() || '';
     let parsed;
