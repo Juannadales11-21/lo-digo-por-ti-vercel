@@ -113,6 +113,8 @@ const MIN_WORDS = 30;
 const MAX_WORDS = 100;
 const DEFAULT_WORDS_MIN = 30;
 const DEFAULT_WORDS_MAX = 50;
+const TOKENS_PER_WORD = 1.5;
+const TOKENS_MARGIN = 1.25;
 
 const getRandomDefaultWords = () =>
   Math.floor(Math.random() * (DEFAULT_WORDS_MAX - DEFAULT_WORDS_MIN + 1)) + DEFAULT_WORDS_MIN;
@@ -142,6 +144,7 @@ app.post('/api/generate-message', generateMessageLimiter, enforceDailyLimit, asy
     : 'normal';
   const rawWordTarget = Number(wordTarget);
   const safeWordTarget = normalizeTargetWords(rawWordTarget);
+  const maxTokens = Math.ceil(safeWordTarget * 3 * TOKENS_PER_WORD * TOKENS_MARGIN);
 
   if (!trimmedSituation) {
     return res.status(400).json({ error: 'La situacion es obligatoria.' });
@@ -173,6 +176,7 @@ Devuelve la respuesta solo como JSON valido con esta forma:
   try {
     const completion = await openai.chat.completions.create({
       model: 'gpt-5-nano',
+      max_tokens: maxTokens,
       messages: [
         {
           role: 'system',
