@@ -109,6 +109,21 @@ const firmnessGuidance = {
     'El mensaje debe ser muy claro y directo, marcando limites o necesidades de manera firme y sin rodeos, pero sin faltar al respeto.'
 };
 
+const MIN_WORDS = 30;
+const MAX_WORDS = 100;
+const DEFAULT_WORDS_MIN = 30;
+const DEFAULT_WORDS_MAX = 50;
+
+const getRandomDefaultWords = () =>
+  Math.floor(Math.random() * (DEFAULT_WORDS_MAX - DEFAULT_WORDS_MIN + 1)) + DEFAULT_WORDS_MIN;
+
+const normalizeTargetWords = (value) => {
+  if (value === '' || value === null || value === undefined) return getRandomDefaultWords();
+  const parsed = Number(value);
+  if (!Number.isFinite(parsed)) return getRandomDefaultWords();
+  return Math.min(MAX_WORDS, Math.max(MIN_WORDS, Math.round(parsed)));
+};
+
 app.post('/api/generate-message', generateMessageLimiter, enforceDailyLimit, async (req, res) => {
   const { situation, tone, channel, intensity, language, humanize, firmness, wordTarget } = req.body || {};
 
@@ -126,10 +141,7 @@ app.post('/api/generate-message', generateMessageLimiter, enforceDailyLimit, asy
     ? firmnessKey
     : 'normal';
   const rawWordTarget = Number(wordTarget);
-  const safeWordTarget =
-    Number.isFinite(rawWordTarget) && rawWordTarget >= 10 && rawWordTarget <= 300
-      ? Math.round(rawWordTarget)
-      : 100;
+  const safeWordTarget = normalizeTargetWords(rawWordTarget);
 
   if (!trimmedSituation) {
     return res.status(400).json({ error: 'La situacion es obligatoria.' });
@@ -144,7 +156,7 @@ app.post('/api/generate-message', generateMessageLimiter, enforceDailyLimit, asy
   const humanizeInstruction = humanizeEnabled
     ? 'Si "humanize" esta activado, usa un estilo natural, cotidiano y cercano, como una persona real.'
     : '';
-  const lengthInstruction = `Cada mensaje debe tener aproximadamente ${safeWordTarget} palabras. Acercate lo maximo posible a ese numero sin pasarte demasiado.`;
+  const lengthInstruction = `Cada mensaje debe tener aproximadamente ${safeWordTarget} palabras (maximo 100). No hace falta que sea exacto; intenta aproximar la longitud.`;
 
   const prompt = `
 Eres una persona que escribe mensajes cortos listos para el canal indicado.

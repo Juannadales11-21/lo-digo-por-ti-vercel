@@ -42,7 +42,7 @@ const translations = {
     'form.humanizeHelp': 'Activa un estilo mas natural, calido y cercano.',
     'form.targetWordsLabel': 'Longitud objetivo',
     'form.targetWordsHint': 'Palabras',
-    'form.targetWordsPlaceholder': 'Ej: 80',
+    'form.targetWordsPlaceholder': 'Ej: 35',
     'form.wordCountLabel': 'Recuento de palabras',
     'form.wordCount.singular': 'palabra',
     'form.wordCount.plural': 'palabras',
@@ -192,7 +192,7 @@ const translations = {
     'form.humanizeHelp': 'Make the tone warmer and more natural when enabled.',
     'form.targetWordsLabel': 'Target length',
     'form.targetWordsHint': 'Words',
-    'form.targetWordsPlaceholder': 'e.g., 120',
+    'form.targetWordsPlaceholder': 'e.g., 35',
     'form.wordCount.singular': 'word',
     'form.wordCount.plural': 'words',
     'home.guides.title': 'Not sure what to say?',
@@ -342,7 +342,7 @@ const translations = {
     'form.humanizeHelp': 'Active un style plus naturel, chaleureux et humain.',
     'form.targetWordsLabel': 'Longueur cible',
     'form.targetWordsHint': 'Mots',
-    'form.targetWordsPlaceholder': 'Ex : 120',
+    'form.targetWordsPlaceholder': 'Ex : 35',
     'form.wordCount.singular': 'mot',
     'form.wordCount.plural': 'mots',
     'home.guides.title': 'Vous ne savez pas quoi dire ?',
@@ -478,7 +478,7 @@ const translations = {
     'form.toneFun': 'Locker',
     'form.targetWordsLabel': 'Zielumfang',
     'form.targetWordsHint': 'Woerter',
-    'form.targetWordsPlaceholder': 'z. B. 120',
+    'form.targetWordsPlaceholder': 'z. B. 35',
     'form.intensityLabel': 'Intensitaet',
     'form.intensity1': '1 Sanft',
     'form.intensity2': '2 Normal',
@@ -628,7 +628,7 @@ const translations = {
     'form.toneFun': 'Divertente',
     'form.targetWordsLabel': 'Lunghezza obiettivo',
     'form.targetWordsHint': 'Parole',
-    'form.targetWordsPlaceholder': 'Es: 120',
+    'form.targetWordsPlaceholder': 'Es: 35',
     'form.intensityLabel': 'Intensita',
     'form.intensity1': '1 Leggero',
     'form.intensity2': '2 Normale',
@@ -934,37 +934,37 @@ const targetWordsTranslations = {
   es: {
     'form.targetWordsLabel': 'Longitud objetivo',
     'form.targetWordsHint': 'Palabras',
-    'form.targetWordsPlaceholder': 'Ej: 80',
+    'form.targetWordsPlaceholder': 'Ej: 35',
     'form.wordCountLabel': 'Recuento de palabras'
   },
   en: {
     'form.targetWordsLabel': 'Target length',
     'form.targetWordsHint': 'Words',
-    'form.targetWordsPlaceholder': 'e.g., 80',
+    'form.targetWordsPlaceholder': 'e.g., 35',
     'form.wordCountLabel': 'Word count'
   },
   fr: {
     'form.targetWordsLabel': 'Longueur cible',
     'form.targetWordsHint': 'Mots',
-    'form.targetWordsPlaceholder': 'Ex : 80',
+    'form.targetWordsPlaceholder': 'Ex : 35',
     'form.wordCountLabel': 'Compte de mots'
   },
   de: {
     'form.targetWordsLabel': 'Zielumfang',
     'form.targetWordsHint': 'Woerter',
-    'form.targetWordsPlaceholder': 'z. B. 80',
+    'form.targetWordsPlaceholder': 'z. B. 35',
     'form.wordCountLabel': 'Wortzahl'
   },
   it: {
     'form.targetWordsLabel': 'Lunghezza obiettivo',
     'form.targetWordsHint': 'Parole',
-    'form.targetWordsPlaceholder': 'Es: 80',
+    'form.targetWordsPlaceholder': 'Es: 35',
     'form.wordCountLabel': 'Conteggio parole'
   },
   pt: {
     'form.targetWordsLabel': 'Comprimento alvo',
     'form.targetWordsHint': 'Palavras',
-    'form.targetWordsPlaceholder': 'Ex.: 80',
+    'form.targetWordsPlaceholder': 'Ex.: 35',
     'form.wordCountLabel': 'Contagem de palavras'
   }
 };
@@ -1647,9 +1647,10 @@ const examples = exampleLanguages.flatMap((lang) =>
 );
 
 const MAX_MESSAGES = 3;
-const TARGET_WORDS_DEFAULT = 100;
-const TARGET_WORDS_MIN = 20;
-const TARGET_WORDS_MAX = 400;
+const TARGET_WORDS_MIN = 30;
+const TARGET_WORDS_MAX = 100;
+const TARGET_WORDS_DEFAULT_MIN = 30;
+const TARGET_WORDS_DEFAULT_MAX = 50;
 const FAVORITES_KEY = 'ldpt_favorites';
 const HISTORY_KEY = 'ldpt_history';
 
@@ -1710,6 +1711,10 @@ const hasGeneratorUI =
   Boolean(generateBtn) &&
   Boolean(resultsContainer);
 
+const getRandomTargetWordsDefault = () =>
+  Math.floor(Math.random() * (TARGET_WORDS_DEFAULT_MAX - TARGET_WORDS_DEFAULT_MIN + 1)) +
+  TARGET_WORDS_DEFAULT_MIN;
+
 const state = {
   favorites: [],
   history: [],
@@ -1717,7 +1722,7 @@ const state = {
   currentLanguage: initialLanguage,
   humanize: false,
   wordCount: 0,
-  targetWords: TARGET_WORDS_DEFAULT
+  targetWords: getRandomTargetWordsDefault()
 };
 
 const getDict = (lang) => ({ ...translations.es, ...(translations[lang] || {}) });
@@ -1784,17 +1789,15 @@ const updateWordCount = () => {
 const initializeTargetWordsInput = () => {
   if (!targetWordsInput) return;
   const initialValue = targetWordsInput.value;
-  const initial = clampTargetWords(initialValue === '' ? undefined : initialValue);
-  if (initialValue === '') {
-    state.targetWords = TARGET_WORDS_DEFAULT;
-  } else {
+  if (initialValue !== '') {
+    const initial = clampTargetWords(initialValue);
     targetWordsInput.value = initial;
     state.targetWords = initial;
   }
 
   const syncValue = () => {
     if (targetWordsInput.value === '') {
-      state.targetWords = TARGET_WORDS_DEFAULT;
+      state.targetWords = getRandomTargetWordsDefault();
       return;
     }
     const sanitized = clampTargetWords(targetWordsInput.value);
@@ -1805,7 +1808,8 @@ const initializeTargetWordsInput = () => {
   targetWordsInput.addEventListener('change', syncValue);
   targetWordsInput.addEventListener('blur', syncValue);
   targetWordsInput.addEventListener('input', () => {
-    state.targetWords = targetWordsInput.value === '' ? TARGET_WORDS_DEFAULT : clampTargetWords(targetWordsInput.value);
+    state.targetWords =
+      targetWordsInput.value === '' ? getRandomTargetWordsDefault() : clampTargetWords(targetWordsInput.value);
   });
 };
 
@@ -1819,15 +1823,19 @@ const mapFirmnessFromSlider = (value) => {
 };
 
 const clampTargetWords = (value) => {
-  if (value === '' || value === null || value === undefined) return TARGET_WORDS_DEFAULT;
   const num = Number(value);
-  if (!Number.isFinite(num)) return TARGET_WORDS_DEFAULT;
+  if (!Number.isFinite(num)) return getRandomTargetWordsDefault();
   return Math.min(TARGET_WORDS_MAX, Math.max(TARGET_WORDS_MIN, Math.round(num)));
 };
 
 const getTargetWordsValue = () => {
-  const raw = targetWordsInput ? targetWordsInput.value : '';
-  const validated = clampTargetWords(raw);
+  if (!targetWordsInput || targetWordsInput.value === '') {
+    const randomized = getRandomTargetWordsDefault();
+    state.targetWords = randomized;
+    return randomized;
+  }
+  const validated = clampTargetWords(targetWordsInput.value);
+  targetWordsInput.value = validated;
   state.targetWords = validated;
   return validated;
 };

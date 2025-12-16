@@ -48,6 +48,21 @@ const firmnessGuidance = {
     'El mensaje debe ser muy claro y directo, marcando limites o necesidades de manera firme y sin rodeos, pero sin faltar al respeto.'
 };
 
+const MIN_WORDS = 30;
+const MAX_WORDS = 100;
+const DEFAULT_WORDS_MIN = 30;
+const DEFAULT_WORDS_MAX = 50;
+
+const getRandomDefaultWords = () =>
+  Math.floor(Math.random() * (DEFAULT_WORDS_MAX - DEFAULT_WORDS_MIN + 1)) + DEFAULT_WORDS_MIN;
+
+const normalizeTargetWords = (value) => {
+  if (value === '' || value === null || value === undefined) return getRandomDefaultWords();
+  const parsed = Number(value);
+  if (!Number.isFinite(parsed)) return getRandomDefaultWords();
+  return Math.min(MAX_WORDS, Math.max(MIN_WORDS, Math.round(parsed)));
+};
+
 // Nota: en entorno serverless de Vercel no hay estado persistente para rate limiting en memoria.
 // Si se necesita control de abuso, se puede agregar mas adelante con soluciones como middleware externo o KV.
 
@@ -82,9 +97,7 @@ export default async function handler(req, res) {
     ? firmnessKey
     : 'normal';
   const requestedWords = targetWords ?? wordTarget;
-  const parsedTargetWords = Number(requestedWords);
-  const fallbackTarget = Number.isFinite(parsedTargetWords) ? parsedTargetWords : 100;
-  const words = Math.min(400, Math.max(20, fallbackTarget));
+  const words = normalizeTargetWords(requestedWords);
 
   if (!trimmedSituation) {
     return res.status(400).json({ error: 'La situacion es obligatoria.' });
@@ -108,7 +121,7 @@ Genera 3 versiones distintas para la siguiente situacion: "${trimmedSituation}".
 El tono debe ser: ${toneLabel}.
 ${firmnessInstruction}
 ${humanizeInstruction}
-Cada mensaje debe tener aproximadamente ${words} palabras. No hace falta que sea exacto, pero intenta acercarte lo maximo posible a esa longitud.
+Cada mensaje debe tener aproximadamente ${words} palabras (maximo 100). No hace falta que sea exacto; intenta aproximar la longitud.
 Responde siempre SOLO con JSON valido con esta forma:
 {"messages": ["mensaje 1", "mensaje 2", "mensaje 3"]}`.trim();
 
