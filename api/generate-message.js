@@ -94,6 +94,29 @@ const callOpenAIWithOptionalTokenLimit = async (client, payload, maxTokens) => {
   return client.chat.completions.create(basePayload);
 };
 
+const parseMessagesFromContent = (rawContent) => {
+  const tryParse = (text) => {
+    try {
+      return JSON.parse(text);
+    } catch (e) {
+      return null;
+    }
+  };
+
+  const direct = tryParse(rawContent);
+  if (direct) return direct;
+
+  const match = rawContent.match(/\{[\s\S]*?\}/);
+  if (!match) return null;
+
+  const block = match[0];
+  const parsedBlock = tryParse(block);
+  if (parsedBlock) return parsedBlock;
+
+  const fixedBlock = block.replace(/(\{|,)\s*messages\s*:/i, '$1 "messages":');
+  return tryParse(fixedBlock);
+};
+
 // Nota: en entorno serverless de Vercel no hay estado persistente para rate limiting en memoria.
 // Si se necesita control de abuso, se puede agregar mas adelante con soluciones como middleware externo o KV.
 
@@ -171,21 +194,11 @@ Responde siempre SOLO con JSON valido con esta forma:
     }, maxTokens);
 
     const rawContent = completion.choices?.[0]?.message?.content?.trim() || '';
-    let parsed;
-
-    try {
-      parsed = JSON.parse(rawContent);
-    } catch (parseError) {
-      const match = rawContent.match(/\{[\s\S]*\}/);
-      if (match) {
-        parsed = JSON.parse(match[0]);
-      }
-    }
-
+    const parsed = parseMessagesFromContent(rawContent);
     const messages = Array.isArray(parsed?.messages) ? parsed.messages.filter(Boolean).slice(0, 3) : [];
 
     if (!messages.length) {
-      return res.status(500).json({ error: 'No se pudieron generar mensajes.' });
+      return res.status(200).json({ messages: quotaFallbackMessages });
     }
 
     return res.status(200).json({ messages });
