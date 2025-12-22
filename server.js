@@ -21,6 +21,8 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname)));
 
+const MODEL = 'gpt-4o-mini';
+
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY
 });
@@ -229,7 +231,8 @@ Devuelve la respuesta solo como JSON valido con esta forma:
     const completion = await callOpenAIWithOptionalTokenLimit(
       openai,
       {
-        model: 'gpt-5-nano',
+        model: MODEL,
+        response_format: { type: 'json_object' },
         messages: [
           {
             role: 'system',
@@ -247,7 +250,7 @@ Devuelve la respuesta solo como JSON valido con esta forma:
     const messages = Array.isArray(parsed?.messages) ? parsed.messages.filter(Boolean).slice(0, 3) : [];
 
     if (!messages.length) {
-      return res.status(200).json({ messages: quotaFallbackMessages });
+      return res.status(500).json({ error: 'No se pudieron generar mensajes.' });
     }
 
     res.json({ messages });

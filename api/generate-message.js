@@ -1,4 +1,8 @@
+const isDev = process.env.NODE_ENV !== 'production';
+
 import OpenAI from 'openai';
+
+const MODEL = 'gpt-4o-mini';
 
 const client = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY
@@ -94,29 +98,6 @@ const callOpenAIWithOptionalTokenLimit = async (client, payload, maxTokens) => {
   return client.chat.completions.create(basePayload);
 };
 
-const parseMessagesFromContent = (rawContent) => {
-  const tryParse = (text) => {
-    try {
-      return JSON.parse(text);
-    } catch (e) {
-      return null;
-    }
-  };
-
-  const direct = tryParse(rawContent);
-  if (direct) return direct;
-
-  const match = rawContent.match(/\{[\s\S]*?\}/);
-  if (!match) return null;
-
-  const block = match[0];
-  const parsedBlock = tryParse(block);
-  if (parsedBlock) return parsedBlock;
-
-  const fixedBlock = block.replace(/(\{|,)\s*messages\s*:/i, '$1 "messages":');
-  return tryParse(fixedBlock);
-};
-
 // Nota: en entorno serverless de Vercel no hay estado persistente para rate limiting en memoria.
 // Si se necesita control de abuso, se puede agregar mas adelante con soluciones como middleware externo o KV.
 
@@ -181,24 +162,39 @@ Responde siempre SOLO con JSON valido con esta forma:
 {"messages": ["mensaje 1", "mensaje 2", "mensaje 3"]}`.trim();
 
   try {
-    const completion = await callOpenAIWithOptionalTokenLimit(client, {
-      model: 'gpt-5-nano',
-      messages: [
-        {
-          role: 'system',
-          content:
-            'Eres una persona que redacta mensajes breves y naturales para distintos canales. Responde siempre en el idioma indicado por el usuario, sin traducciones adicionales, y devuelve solo JSON con la forma {"messages": ["mensaje 1", "mensaje 2", "mensaje 3"]}.'
-        },
-        { role: 'user', content: prompt }
-      ]
-    }, maxTokens);
+    const completion = await callOpenAIWithOptionalTokenLimit(
+      client,
+      {
+        model: MODEL,
+        response_format: { type: 'json_object' },
+        messages: [
+          {
+            role: 'system',
+            content:
+              'Eres una persona que redacta mensajes breves y naturales para distintos canales. Responde siempre en el idioma indicado por el usuario, sin traducciones adicionales, y devuelve solo JSON con la forma {"messages": ["mensaje 1", "mensaje 2", "mensaje 3"]}.'
+          },
+          { role: 'user', content: prompt }
+        ]
+      },
+      maxTokens
+    );
 
     const rawContent = completion.choices?.[0]?.message?.content?.trim() || '';
-    const parsed = parseMessagesFromContent(rawContent);
+    let parsed;
+
+    try {
+      parsed = JSON.parse(rawContent);
+    } catch (parseError) {
+      const match = rawContent.match(/\{[\s\S]*\}/);
+      if (match) {
+        parsed = JSON.parse(match[0]);
+      }
+    }
+
     const messages = Array.isArray(parsed?.messages) ? parsed.messages.filter(Boolean).slice(0, 3) : [];
 
     if (!messages.length) {
-      return res.status(200).json({ messages: quotaFallbackMessages });
+      return res.status(500).json({ error: 'No se pudieron generar mensajes.' });
     }
 
     return res.status(200).json({ messages });
@@ -206,8 +202,21 @@ Responde siempre SOLO con JSON valido con esta forma:
     const quotaExceeded =
       error?.error?.code === 'insufficient_quota' || error?.status === 429 || error?.response?.status === 429;
     if (quotaExceeded) {
+      if (isDev) {
+        return res.status(429).json({
+          error: 'OPENAI_429',
+          debug: {
+            status: error?.status || error?.response?.status,
+            code: error?.error?.code || null,
+            message: error?.message || null
+          }
+        });
+      }
+
+      // Produccion: sigue usando fallback
       return res.status(200).json({ messages: quotaFallbackMessages });
     }
+
 
     console.error('Error al generar mensajes', error);
     return res
